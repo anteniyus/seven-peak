@@ -1,5 +1,5 @@
-import get from "../../../components/api/api";
+import getSections from "../../service/ScreensService";
 
-const gets = (params) => get("/sections", { q: "sports", ...params });
+const getSports = (params) => getSections({ q: "sports", ...params });
 
-export default gets;
+export default getSports;

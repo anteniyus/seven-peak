@@ -1,12 +1,13 @@
 import React from "react";
+
 import styles from "./MainScreen.module.css";
+
+import NavigationArea from "../../containers/navigationArea/NavigationArea";
 
 function MainScreen() {
   return (
     <>
-      <div className={styles.header}>
-        <h1>Responsive</h1>
-      </div>
+      <NavigationArea />
 
       <div className={styles.row}>
         <div

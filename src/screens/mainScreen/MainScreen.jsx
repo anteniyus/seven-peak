@@ -5,6 +5,7 @@ import styles from "./MainScreen.module.css";
 
 import NavigationArea from "../../containers/navigationArea/NavigationArea";
 import HomeScreen from "../homeScreen/HomeScreen";
+import SportsScreen from "../sportsScreen/SportsScreen";
 
 function MainScreen() {
   return (
@@ -14,6 +15,7 @@ function MainScreen() {
       <div className={styles.row}>
         <Switch>
           <Route path="/" component={HomeScreen} exact />
+          <Route path="/sports" component={SportsScreen} />
         </Switch>
         <div
           className={[styles.col3, styles["col-s-3"], styles.menu].join(" ")}

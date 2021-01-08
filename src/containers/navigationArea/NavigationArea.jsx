@@ -1,13 +1,44 @@
-import React from "react";
+import React, { Component } from "react";
 
-import styles from "../../screens/mainScreen/MainScreen.module.css";
+import { FcMenu } from "react-icons/fc";
 
-function NavigationArea() {
-  return (
-    <div className={styles.header}>
-      <h1>Responsive</h1>
-    </div>
-  );
+import styles from "./NavigationArea.module.css";
+
+import MENU_ITEMS from "../../screens/mainScreen/MenuItemsConstants";
+import MenuItem from "../../components/menuItem/MenuItem";
+
+const barClass = [styles.navigation, styles.bar].join(" ");
+const navigationClass = styles.navigation;
+
+export default class NavigationArea extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      bar: false,
+    };
+  }
+
+  handleMenu = () => {
+    const { bar } = this.state;
+    this.setState({ bar: !bar });
+  };
+
+  render() {
+    const { bar } = this.state;
+    return (
+      <div className={styles.navigationArea}>
+        <h1>Responsive</h1>
+        <div className={bar ? barClass : navigationClass}>
+          <MenuItem menuItems={MENU_ITEMS} />
+          <div
+            className={styles.icon}
+            onClick={this.handleMenu}
+            aria-hidden="true"
+          >
+            <FcMenu />
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
-
-export default NavigationArea;

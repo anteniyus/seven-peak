@@ -1,8 +1,10 @@
 import React from "react";
+import { Switch, Route } from "react-router-dom";
 
 import styles from "./MainScreen.module.css";
 
 import NavigationArea from "../../containers/navigationArea/NavigationArea";
+import HomeScreen from "../homeScreen/HomeScreen";
 
 function MainScreen() {
   return (
@@ -10,6 +12,9 @@ function MainScreen() {
       <NavigationArea />
 
       <div className={styles.row}>
+        <Switch>
+          <Route path="/" component={HomeScreen} exact />
+        </Switch>
         <div
           className={[styles.col3, styles["col-s-3"], styles.menu].join(" ")}
         >

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components/macro";
+import { Link } from "react-router-dom";
 
 export default class MenuItem extends Component {
   constructor(props) {
@@ -20,21 +21,24 @@ export default class MenuItem extends Component {
     const { activeItem } = this.state;
     const { menuItems } = this.props;
 
-    let Title = null;
+    let ColorfulDiv = null;
     return menuItems.map((menuItem) => {
-      Title = styled.div`
+      ColorfulDiv = styled.div`
         color: white;
         background-color: ${menuItem.name === activeItem ? menuItem.color : ""};
+        border-bottom: 3px solid ${menuItem.color};
       `;
 
       return (
-        <Title
-          aria-hidden="true"
-          onClick={() => this.handleClick(menuItem.name)}
-          key={menuItem.name}
-        >
-          {menuItem.name}
-        </Title>
+        <Link to={menuItem.url}>
+          <ColorfulDiv
+            aria-hidden="true"
+            onClick={() => this.handleClick(menuItem.name)}
+            key={menuItem.name}
+          >
+            {menuItem.name}
+          </ColorfulDiv>
+        </Link>
       );
     });
   };

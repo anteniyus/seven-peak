@@ -27,7 +27,7 @@ export default class NavigationArea extends Component {
     const { bar } = this.state;
     return (
       <div className={styles.navigationArea}>
-        <h1>Responsive</h1>
+        <h1>The Peaks</h1>
         <div className={bar ? barClass : navigationClass}>
           <MenuItem menuItems={MENU_ITEMS} />
           <div

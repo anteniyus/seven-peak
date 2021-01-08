@@ -30,11 +30,10 @@ export default class MenuItem extends Component {
       `;
 
       return (
-        <Link to={menuItem.url}>
+        <Link to={menuItem.url} key={menuItem.name + new Date().getTime()}>
           <ColorfulDiv
             aria-hidden="true"
             onClick={() => this.handleClick(menuItem.name)}
-            key={menuItem.name}
           >
             {menuItem.name}
           </ColorfulDiv>

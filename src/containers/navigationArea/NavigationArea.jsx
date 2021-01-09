@@ -4,7 +4,7 @@ import { FcMenu } from "react-icons/fc";
 
 import styles from "./NavigationArea.module.css";
 
-import MENU_ITEMS from "../../screens/mainScreen/MenuItemsConstants";
+import MENU_ITEMS from "./MenuItemsConstants";
 import MenuItem from "../../components/menuItem/MenuItem";
 
 const barClass = [styles.navigation, styles.bar].join(" ");

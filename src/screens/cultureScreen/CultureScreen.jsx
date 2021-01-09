@@ -1,6 +1,6 @@
 import React from "react";
 import Category from "../../containers/category/Category";
 
-const SportsScreen = () => <Category url="/sport" />;
+const CultureScreen = () => <Category url="/culture" />;
 
-export default SportsScreen;
+export default CultureScreen;

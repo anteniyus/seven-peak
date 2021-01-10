@@ -1,0 +1,30 @@
+.container {
+  position: relative;
+  max-width: 800px;
+  height: 300px;
+  margin: 0 auto;
+}
+
+.container img {
+  vertical-align: middle;
+  height: 100%;
+}
+
+.container .content {
+  position: absolute;
+  bottom: 0;
+  background: rgb(0, 0, 0); /* Fallback color */
+  background: rgba(12, 53, 115, 0.9); /* Black background with 0.5 opacity */
+  color: #f1f1f1;
+  width: 100%;
+  padding: 10px;
+  height: 40%;
+  text-overflow: ellipsis;
+  font-weight: normal;
+  font-size: large;
+}
+
+.content p {
+  display: initial;
+  text-overflow: ellipsis;
+}

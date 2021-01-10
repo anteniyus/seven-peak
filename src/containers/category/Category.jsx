@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 import getCategory from "./service/CategoryService";
 import styles from "../../screens/mainScreen/MainScreen.module.css";
+import categoryStyles from "./Category.module.css";
 
 export default class Category extends Component {
   constructor(props) {
@@ -28,8 +29,11 @@ export default class Category extends Component {
             className={[styles["col-3"], styles["col-s-12"]].join(" ")}
             key={sportData.id}
           >
-            <div className={styles.aside}>
+            <div className={categoryStyles.container}>
               <img src={sportData.fields.thumbnail} alt={sportData.webTitle} />
+              <div className={categoryStyles.content}>
+                <p>{sportData.webTitle}</p>
+              </div>
             </div>
           </div>
         ))}

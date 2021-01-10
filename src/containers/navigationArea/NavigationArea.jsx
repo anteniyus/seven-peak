@@ -4,7 +4,7 @@ import { FcMenu } from "react-icons/fc";
 
 import styles from "./NavigationArea.module.css";
 
-import MENU_ITEMS from "./MenuItemsConstants";
+import { getMenuItems } from "./MenuItemsConstants";
 import MenuItem from "../../components/menuItem/MenuItem";
 
 const barClass = [styles.navigation, styles.bar].join(" ");
@@ -29,7 +29,7 @@ export default class NavigationArea extends Component {
       <div className={styles.navigationArea}>
         <h1>The Peaks</h1>
         <div className={bar ? barClass : navigationClass}>
-          <MenuItem menuItems={MENU_ITEMS} />
+          <MenuItem menuItems={getMenuItems()} />
           <div
             className={styles.icon}
             onClick={this.handleMenu}

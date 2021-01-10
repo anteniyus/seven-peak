@@ -30,7 +30,14 @@ export default class Category extends Component {
             key={sportData.id}
           >
             <div className={categoryStyles.container}>
-              <img src={sportData.fields.thumbnail} alt={sportData.webTitle} />
+              <img
+                src={
+                  sportData.fields.thumbnail
+                    ? sportData.fields.thumbnail
+                    : process.env.PUBLIC_URL.concat("/thePeaks.jpg")
+                }
+                alt={sportData.webTitle}
+              />
               <div className={categoryStyles.content}>
                 <p>{sportData.webTitle}</p>
               </div>

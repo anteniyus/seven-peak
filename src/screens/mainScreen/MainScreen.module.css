@@ -6,6 +6,7 @@
   content: "";
   clear: both;
   display: table;
+  margin: 0 10% 0 10%;
 }
 
 [class*="col-"] {

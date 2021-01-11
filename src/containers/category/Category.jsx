@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { Redirect } from "react-router-dom";
 
-import { IconContext } from "react-icons";
-import { FcEnteringHeavenAlive } from "react-icons/fc";
-
-import getCategory from "./service/CategoryService";
+import { getCategory } from "./service/CategoryService";
 import styles from "../../screens/mainScreen/MainScreen.module.css";
 import categoryStyles from "./Category.module.css";
 import Loading from "../../components/loading/Loading";
@@ -15,6 +13,7 @@ export default class Category extends Component {
     this.state = {
       sportsData: [],
       loading: true,
+      enableRedirect: false,
     };
   }
 
@@ -24,17 +23,30 @@ export default class Category extends Component {
       this.setState({
         sportsData: response.data.response.results,
         loading: false,
+        id: "",
       });
     });
   }
 
+  loadArticle = (id) => {
+    this.setState({ id }, () => {
+      this.setState({ enableRedirect: true });
+    });
+  };
+
   createUI = (sportsData) =>
-    sportsData.map((sportData) => (
+    sportsData.map((sportData, index) => (
       <div
         className={[styles["col-3"], styles["col-s-12"]].join(" ")}
         key={sportData.id}
       >
-        <div className={categoryStyles.container}>
+        <div
+          role="button"
+          tabIndex={index}
+          className={categoryStyles.container}
+          onClick={() => this.loadArticle(sportData.id)}
+          onKeyDown={() => this.loadArticle(sportData.id)}
+        >
           <img
             src={
               sportData.fields.thumbnail
@@ -50,20 +62,25 @@ export default class Category extends Component {
       </div>
     ));
 
-  // eslint-disable-next-line class-methods-use-this
-  BlueLargeIcon() {
-    return (
-      <IconContext.Provider value={{ color: "blue" }}>
-        <div>
-          <FcEnteringHeavenAlive size="10em" />
-        </div>
-      </IconContext.Provider>
-    );
-  }
-
   render() {
-    const { sportsData, loading } = this.state;
-    return <div>{loading ? <Loading /> : this.createUI(sportsData)}</div>;
+    const { sportsData, loading, enableRedirect, id } = this.state;
+    return (
+      <div>
+        {loading ? <Loading /> : this.createUI(sportsData)}
+
+        {enableRedirect && (
+          <Redirect
+            to={{
+              pathname: "/viewArticle",
+              state: {
+                id,
+              },
+            }}
+            push
+          />
+        )}
+      </div>
+    );
   }
 }
 

@@ -8,6 +8,7 @@ import HomeScreen from "../homeScreen/HomeScreen";
 import SportsScreen from "../sportsScreen/SportsScreen";
 import CultureScreen from "../cultureScreen/CultureScreen";
 import LifestyleScreen from "../lifestyleScreen/LifestyleScreen";
+import ArticleScreen from "../articleScreen/ArticleScreen";
 
 function MainScreen() {
   return (
@@ -20,6 +21,7 @@ function MainScreen() {
           <Route path="/sports" component={SportsScreen} />
           <Route path="/cultures" component={CultureScreen} />
           <Route path="/lifestyles" component={LifestyleScreen} />
+          <Route path="/viewArticle" component={ArticleScreen} />
         </Switch>
       </div>
 

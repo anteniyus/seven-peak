@@ -49,7 +49,7 @@ export default class Category extends Component {
         >
           <img
             src={
-              sportData.fields.thumbnail
+              sportData.fields && sportData.fields.thumbnail
                 ? sportData.fields.thumbnail
                 : process.env.PUBLIC_URL.concat("/thePeaks.jpg")
             }

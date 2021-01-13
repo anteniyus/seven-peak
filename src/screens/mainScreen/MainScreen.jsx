@@ -16,35 +16,22 @@ export default class MainScreen extends Component {
     super(props);
 
     this.searchScreenRef = React.createRef();
-
-    this.state = {
-      show: false,
-    };
   }
 
-  showSearchResult = (q) => {
-    this.setState({ show: true }, () =>
-      this.searchScreenRef.current.showResult(q)
-    );
-  };
-
   render() {
-    const { show } = this.state;
     return (
       <>
         <NavigationArea showSearchResult={this.showSearchResult} />
 
         <div className={styles.row}>
-          {!show && (
-            <Switch>
-              <Route path="/" component={HomeScreen} exact />
-              <Route path="/sports" component={SportsScreen} />
-              <Route path="/cultures" component={CultureScreen} />
-              <Route path="/lifestyles" component={LifestyleScreen} />
-              <Route path="/viewArticle" component={ArticleScreen} />
-            </Switch>
-          )}
-          {show && <SearchScreen ref={this.searchScreenRef} />}
+          <Switch>
+            <Route path="/" component={HomeScreen} exact />
+            <Route path="/sports" component={SportsScreen} />
+            <Route path="/cultures" component={CultureScreen} />
+            <Route path="/lifestyles" component={LifestyleScreen} />
+            <Route path="/viewArticle" component={ArticleScreen} />
+            <Route path="/search" component={SearchScreen} />
+          </Switch>
         </div>
 
         <div className={styles.footer}>
@@ -54,28 +41,3 @@ export default class MainScreen extends Component {
     );
   }
 }
-
-// function MainScreen() {
-//   return (
-//     <>
-//       <NavigationArea />
-//
-//       <div className={styles.row}>
-//         <Switch>
-//           <Route path="/" component={HomeScreen} exact />
-//           <Route path="/sports" component={SportsScreen} />
-//           <Route path="/cultures" component={CultureScreen} />
-//           <Route path="/lifestyles" component={LifestyleScreen} />
-//           <Route path="/viewArticle" component={ArticleScreen} />
-//         </Switch>
-//         <SearchScreen />
-//       </div>
-//
-//       <div className={styles.footer}>
-//         <p>Make it responsive</p>
-//       </div>
-//     </>
-//   );
-// }
-//
-// export default MainScreen;

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
+import { Redirect } from "react-router-dom";
 
 import { IconContext } from "react-icons";
 import { FcMenu } from "react-icons/fc";
@@ -9,8 +9,6 @@ import styles from "./NavigationArea.module.css";
 
 import { getMenuItems } from "./MenuItemsConstants";
 import MenuItem from "../../components/menuItem/MenuItem";
-
-import isFunction from "../../utility/Validator";
 
 const barClass = [styles.navigation, styles.bar].join(" ");
 const navigationClass = styles.navigation;
@@ -29,13 +27,6 @@ export default class NavigationArea extends Component {
     this.setState({ bar: !bar });
   };
 
-  searchHandler = () => {
-    const { showSearchResult } = this.props;
-    const { searchValue } = this.state;
-
-    if (isFunction(showSearchResult)) showSearchResult(searchValue);
-  };
-
   handleInput = (event) => {
     this.setState({
       searchValue: event.target.value,
@@ -43,7 +34,7 @@ export default class NavigationArea extends Component {
   };
 
   render() {
-    const { bar } = this.state;
+    const { bar, searchValue } = this.state;
     return (
       <div className={styles.navigationArea}>
         <h1>The Peaks</h1>
@@ -77,15 +68,17 @@ export default class NavigationArea extends Component {
             </div>
           </div>
         </div>
+
+        <Redirect
+          to={{
+            pathname: "/search",
+            state: {
+              q: searchValue,
+            },
+          }}
+          push
+        />
       </div>
     );
   }
 }
-
-NavigationArea.defaultProps = {
-  showSearchResult: undefined,
-};
-
-NavigationArea.propTypes = {
-  showSearchResult: PropTypes.func,
-};

@@ -24,20 +24,22 @@ export default class MenuItem extends Component {
     let ColorfulDiv = null;
     return menuItems.map((menuItem) => {
       ColorfulDiv = styled.div`
-        color: white;
+        color: ${menuItem.name === activeItem ? "black" : "white"};
         background-color: ${menuItem.name === activeItem ? menuItem.color : ""};
         border-bottom: 3px solid ${menuItem.color};
       `;
 
       return (
-        <Link to={menuItem.url} key={menuItem.name + new Date().getTime()}>
-          <ColorfulDiv
-            aria-hidden="true"
-            onClick={() => this.handleClick(menuItem.name)}
-          >
-            {menuItem.name}
-          </ColorfulDiv>
-        </Link>
+        <div>
+          <Link to={menuItem.url} key={menuItem.name + new Date().getTime()}>
+            <ColorfulDiv
+              aria-hidden="true"
+              onClick={() => this.handleClick(menuItem.name)}
+            >
+              {menuItem.name}
+            </ColorfulDiv>
+          </Link>
+        </div>
       );
     });
   };

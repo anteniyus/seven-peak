@@ -18,8 +18,8 @@ export default class Category extends Component {
   }
 
   componentDidMount() {
-    const { url } = this.props;
-    getCategory(url).then((response) => {
+    const { url, params } = this.props;
+    getCategory(url, params).then((response) => {
       this.setState({
         sportsData: response.data.response.results,
         loading: false,
@@ -84,6 +84,11 @@ export default class Category extends Component {
   }
 }
 
+Category.defaultProps = {
+  params: {},
+};
+
 Category.propTypes = {
   url: PropTypes.string.isRequired,
+  params: PropTypes.shape({}),
 };

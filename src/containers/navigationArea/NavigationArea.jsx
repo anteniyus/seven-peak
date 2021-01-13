@@ -19,6 +19,7 @@ export default class NavigationArea extends Component {
     this.state = {
       bar: false,
       searchValue: "",
+      enableRedirect: false,
     };
   }
 
@@ -30,11 +31,12 @@ export default class NavigationArea extends Component {
   handleInput = (event) => {
     this.setState({
       searchValue: event.target.value,
+      enableRedirect: true,
     });
   };
 
   render() {
-    const { bar, searchValue } = this.state;
+    const { bar, searchValue, enableRedirect } = this.state;
     return (
       <div className={styles.navigationArea}>
         <h1>The Peaks</h1>
@@ -69,15 +71,17 @@ export default class NavigationArea extends Component {
           </div>
         </div>
 
-        <Redirect
-          to={{
-            pathname: "/search",
-            state: {
-              q: searchValue,
-            },
-          }}
-          push
-        />
+        {enableRedirect && (
+          <Redirect
+            to={{
+              pathname: "/search",
+              state: {
+                q: searchValue,
+              },
+            }}
+            push
+          />
+        )}
       </div>
     );
   }

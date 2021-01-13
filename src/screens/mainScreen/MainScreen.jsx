@@ -10,6 +10,7 @@ import CultureScreen from "../cultureScreen/CultureScreen";
 import LifestyleScreen from "../lifestyleScreen/LifestyleScreen";
 import ArticleScreen from "../articleScreen/ArticleScreen";
 import SearchScreen from "../searchScreen/SearchScreen";
+import Header from "../../containers/header/Header";
 
 export default class MainScreen extends Component {
   constructor(props) {
@@ -24,6 +25,7 @@ export default class MainScreen extends Component {
         <NavigationArea showSearchResult={this.showSearchResult} />
 
         <div className={styles.row}>
+          <Header />
           <Switch>
             <Route path="/" component={HomeScreen} exact />
             <Route path="/sports" component={SportsScreen} />

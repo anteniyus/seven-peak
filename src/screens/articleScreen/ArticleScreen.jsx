@@ -4,6 +4,7 @@ import { getArticle } from "../../containers/category/service/CategoryService";
 import Loading from "../../components/loading/Loading";
 import styles from "../mainScreen/MainScreen.module.css";
 import articleStyles from "./ArticleScreen.module.css";
+import AppContext from "../../AppContext";
 
 export default class ArticleScreen extends Component {
   constructor(props) {
@@ -24,6 +25,14 @@ export default class ArticleScreen extends Component {
     });
   }
 
+  saveBookmark = () => {
+    const { location } = this.props;
+    const { id } = location.state;
+    const { bookmarkIdsList } = this.context;
+    bookmarkIdsList.add(id);
+    // this.context.bookmarkIdsList = [...bookmarkIdsList, id];
+  };
+
   render() {
     const { loading, content } = this.state;
     return (
@@ -33,6 +42,9 @@ export default class ArticleScreen extends Component {
         ) : (
           <>
             <div className={[styles["col-9"], styles["col-s-12"]].join(" ")}>
+              <button type="button" onClick={this.saveBookmark}>
+                ADD BOOKMARK
+              </button>
               <p style={{ fontSize: "small" }}>{content.webPublicationDate}</p>
               <h1>{content.webTitle}</h1>
               <h3>{content.fields.headline}</h3>
@@ -67,3 +79,5 @@ ArticleScreen.propTypes = {
     }),
   }).isRequired,
 };
+
+ArticleScreen.contextType = AppContext;

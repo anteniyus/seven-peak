@@ -1,6 +1,9 @@
 * {
   box-sizing: border-box;
 }
+.row {
+  padding: 0 7%;
+}
 
 .row::after {
   content: "";

@@ -10,7 +10,6 @@ import CultureScreen from "../cultureScreen/CultureScreen";
 import LifestyleScreen from "../lifestyleScreen/LifestyleScreen";
 import ArticleScreen from "../articleScreen/ArticleScreen";
 import SearchScreen from "../searchScreen/SearchScreen";
-import Header from "../../containers/header/Header";
 import AllBookmarksScreen from "../allBookmarksScreen/AllBookmarksScreen";
 
 export default class MainScreen extends Component {
@@ -26,7 +25,6 @@ export default class MainScreen extends Component {
         <NavigationArea showSearchResult={this.showSearchResult} />
 
         <div className={styles.row}>
-          <Header />
           <Switch>
             <Route path="/" component={HomeScreen} exact />
             <Route path="/sports" component={SportsScreen} />
@@ -36,10 +34,6 @@ export default class MainScreen extends Component {
             <Route path="/search" component={SearchScreen} />
             <Route path="/allBookmarks" component={AllBookmarksScreen} />
           </Switch>
-        </div>
-
-        <div className={styles.footer}>
-          <p>Make it responsive</p>
         </div>
       </>
     );

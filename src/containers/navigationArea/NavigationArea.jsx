@@ -55,19 +55,16 @@ export default class NavigationArea extends Component {
           </div>
 
           <div className={styles.input}>
-            <input
-              type="text"
-              placeholder="Search"
-              onChange={(event) => this.handleInput(event)}
-            />
-            <div
-              onClick={this.searchHandler}
-              onKeyDown={this.searchHandler}
-              role="button"
-              tabIndex="0"
-            >
-              <FaSearch />
-            </div>
+            <form>
+              <input
+                type="search"
+                placeholder="Search"
+                onChange={(event) => this.handleInput(event)}
+              />
+              <div style={{ float: "left" }}>
+                <FaSearch />
+              </div>
+            </form>
           </div>
         </div>
 

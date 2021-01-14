@@ -19,7 +19,6 @@ export default class SearchScreen extends Component {
   componentDidUpdate(prevProps) {
     const { location } = this.props;
     if (location.state.q !== prevProps.location.state.q) {
-      console.log("man");
       this.showResult(location.state.q);
     }
   }
@@ -32,7 +31,11 @@ export default class SearchScreen extends Component {
 
   render() {
     const { q } = this.state;
-    return <div>{q && <Category url="/search" params={{ q }} />}</div>;
+    return (
+      <div>
+        {q && <Category url="/search" params={{ q }} pageTitle="Search" />}
+      </div>
+    );
   }
 }
 

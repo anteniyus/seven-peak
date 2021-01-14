@@ -1,24 +1,28 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 import styles from "./Header.module.css";
-import AppContext from "../../AppContext";
 
 // eslint-disable-next-line react/prefer-stateless-function
 class Header extends Component {
   render() {
+    const { pageTitle } = this.props;
     return (
       <>
         <div className={styles.header}>
-          <div className={styles.headerRight}>
-            <Link to="/allBookmarks">All Bookmarks</Link>
+          <div className={styles.title}>
+            <h1>{pageTitle}</h1>
           </div>
+          <Link to="/allBookmarks">All Bookmarks</Link>
         </div>
       </>
     );
   }
 }
 
-export default Header;
+Header.propTypes = {
+  pageTitle: PropTypes.string.isRequired,
+};
 
-Header.contextType = AppContext;
+export default Header;

@@ -1,11 +1,10 @@
 .header {
   overflow: hidden;
-  background-color: #f1f1f1;
-  padding: 20px 10px;
+  padding: 0 10px;
 }
 
 .header a {
-  float: left;
+  float: right;
   color: black;
   text-align: center;
   padding: 12px;
@@ -13,6 +12,7 @@
   font-size: 18px;
   line-height: 25px;
   border-radius: 4px;
+  margin-top: 1%;
 }
 
 .header a.logo {
@@ -30,8 +30,9 @@
   color: white;
 }
 
-.header-right {
-  float: right;
+.title {
+  float: left;
+  text-align: left;
 }
 
 @media screen and (max-width: 500px) {
@@ -41,7 +42,7 @@
     text-align: left;
   }
 
-  .header-right {
+  .title {
     float: none;
   }
 }

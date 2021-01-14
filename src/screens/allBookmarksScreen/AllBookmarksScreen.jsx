@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { uuid as u4 } from "uuidv4";
+import { v4 as uuidv4 } from "uuid";
 
 import AppContext from "../../AppContext";
 
@@ -32,7 +32,9 @@ export default class AllBookmarksScreen extends Component {
 
   render() {
     const { bookmarksList } = this.state;
-    return bookmarksList.map((bookmark) => <Card card={bookmark} key={u4()} />);
+    return bookmarksList.map((bookmark) => (
+      <Card card={bookmark} key={uuidv4()} />
+    ));
   }
 }
 

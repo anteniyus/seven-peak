@@ -30,7 +30,6 @@ export default class ArticleScreen extends Component {
     const { articleId } = location.state;
     const { bookmarkIdsList } = this.context;
     bookmarkIdsList.add(articleId);
-    // this.context.bookmarkIdsList = [...bookmarkIdsList, id];
   };
 
   render() {

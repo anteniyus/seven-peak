@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Redirect } from "react-router-dom";
 
+import { v4 as uuidv4 } from "uuid";
+
 import styles from "../../screens/mainScreen/MainScreen.module.css";
 import categoryStyles from "../category/Category.module.css";
 
@@ -28,7 +30,7 @@ export default class Card extends Component {
       <>
         <div
           className={[styles["col-3"], styles["col-s-12"]].join(" ")}
-          key={card.id + new Date().getTime()}
+          key={uuidv4()}
         >
           <div
             role="button"

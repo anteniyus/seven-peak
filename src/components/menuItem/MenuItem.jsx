@@ -1,15 +1,17 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components/macro";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
-export default class MenuItem extends Component {
+import { v4 as uuidv4 } from "uuid";
+
+class MenuItem extends Component {
   constructor(props) {
     super();
     this.state = {
       activeItem: props.defaultActiveItem
         ? props.defaultActiveItem
-        : props.menuItems[0].name,
+        : props.location.pathname,
     };
   }
 
@@ -24,17 +26,17 @@ export default class MenuItem extends Component {
     let ColorfulDiv = null;
     return menuItems.map((menuItem) => {
       ColorfulDiv = styled.div`
-        color: ${menuItem.name === activeItem ? "black" : "white"};
-        background-color: ${menuItem.name === activeItem ? menuItem.color : ""};
+        color: ${menuItem.url === activeItem ? "black" : "white"};
+        background-color: ${menuItem.url === activeItem ? menuItem.color : ""};
         border-bottom: 3px solid ${menuItem.color};
       `;
 
       return (
-        <div>
-          <Link to={menuItem.url} key={menuItem.name + new Date().getTime()}>
+        <div key={uuidv4()}>
+          <Link to={menuItem.url}>
             <ColorfulDiv
               aria-hidden="true"
-              onClick={() => this.handleClick(menuItem.name)}
+              onClick={() => this.handleClick(menuItem.url)}
             >
               {menuItem.name}
             </ColorfulDiv>
@@ -61,4 +63,8 @@ MenuItem.propTypes = {
     })
   ).isRequired,
   defaultActiveItem: PropTypes.string,
+  location: PropTypes.shape({ pathname: PropTypes.string.isRequired })
+    .isRequired,
 };
+
+export default withRouter(MenuItem);

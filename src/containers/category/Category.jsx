@@ -6,6 +6,8 @@ import Loading from "../../components/loading/Loading";
 import NewsCards from "../card/NewsCards";
 
 import { notEmptyArray } from "../../utility/Validator";
+import AppContext from "../../AppContext";
+import Header from "../header/Header";
 
 export default class Category extends Component {
   constructor(props) {
@@ -25,8 +27,15 @@ export default class Category extends Component {
     });
   }
 
-  createUI = (categoryData) =>
-    notEmptyArray(categoryData) && <NewsCards cardsList={categoryData} />;
+  createUI = (categoryData) => {
+    const { pageTitle } = this.props;
+    return (
+      <>
+        <Header pageTitle={pageTitle} />
+        {notEmptyArray(categoryData) && <NewsCards cardsList={categoryData} />}
+      </>
+    );
+  };
 
   render() {
     const { categoryData, loading } = this.state;
@@ -41,4 +50,7 @@ Category.defaultProps = {
 Category.propTypes = {
   url: PropTypes.string.isRequired,
   params: PropTypes.shape({}),
+  pageTitle: PropTypes.string.isRequired,
 };
+
+Category.contextType = AppContext;

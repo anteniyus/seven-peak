@@ -1,4 +1,5 @@
-const isFunction = (functionToCheck) =>
+export const isFunction = (functionToCheck) =>
   functionToCheck && {}.toString.call(functionToCheck) === "[object Function]";
 
-export default isFunction;
+export const notEmptyArray = (arrayToCheck) =>
+  Array.isArray(arrayToCheck) && arrayToCheck.length;

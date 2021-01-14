@@ -17,7 +17,7 @@ export default class ArticleScreen extends Component {
 
   componentDidMount() {
     const { location } = this.props;
-    getArticle("/".concat(location.state.id)).then((response) => {
+    getArticle("/".concat(location.state.articleId)).then((response) => {
       this.setState({
         content: response.data.response.content,
         loading: false,
@@ -27,9 +27,9 @@ export default class ArticleScreen extends Component {
 
   saveBookmark = () => {
     const { location } = this.props;
-    const { id } = location.state;
+    const { articleId } = location.state;
     const { bookmarkIdsList } = this.context;
-    bookmarkIdsList.add(id);
+    bookmarkIdsList.add(articleId);
     // this.context.bookmarkIdsList = [...bookmarkIdsList, id];
   };
 
@@ -75,7 +75,7 @@ export default class ArticleScreen extends Component {
 ArticleScreen.propTypes = {
   location: PropTypes.shape({
     state: PropTypes.shape({
-      id: PropTypes.string.isRequired,
+      articleId: PropTypes.string.isRequired,
     }),
   }).isRequired,
 };

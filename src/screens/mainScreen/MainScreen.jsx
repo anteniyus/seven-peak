@@ -11,6 +11,7 @@ import LifestyleScreen from "../lifestyleScreen/LifestyleScreen";
 import ArticleScreen from "../articleScreen/ArticleScreen";
 import SearchScreen from "../searchScreen/SearchScreen";
 import Header from "../../containers/header/Header";
+import AllBookmarksScreen from "../allBookmarksScreen/AllBookmarksScreen";
 
 export default class MainScreen extends Component {
   constructor(props) {
@@ -33,6 +34,7 @@ export default class MainScreen extends Component {
             <Route path="/lifestyles" component={LifestyleScreen} />
             <Route path="/viewArticle" component={ArticleScreen} />
             <Route path="/search" component={SearchScreen} />
+            <Route path="/allBookmarks" component={AllBookmarksScreen} />
           </Switch>
         </div>
 

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { BsBookmarkPlus } from "react-icons/bs";
+import { BsBookmarkPlus, BsBookmarkDash } from "react-icons/bs";
 
 import { getArticle } from "../../containers/category/service/CategoryService";
 import Loading from "../../components/loading/Loading";
@@ -15,6 +15,7 @@ export default class ArticleScreen extends Component {
     this.state = {
       loading: true,
       content: "",
+      isBooked: false,
     };
   }
 
@@ -26,13 +27,55 @@ export default class ArticleScreen extends Component {
         loading: false,
       });
     });
+
+    this.createBookmarkState(location.state.articleId);
   }
+
+  createBookmarkState = (articleId) => {
+    const { bookmarkIdsList } = this.context;
+
+    if (bookmarkIdsList.has(articleId)) this.setState({ isBooked: true });
+  };
 
   saveBookmark = () => {
     const { location } = this.props;
     const { articleId } = location.state;
     const { bookmarkIdsList } = this.context;
     bookmarkIdsList.add(articleId);
+    this.setState({ isBooked: true });
+  };
+
+  deleteBookmark = () => {
+    const { location } = this.props;
+    const { articleId } = location.state;
+    const { bookmarkIdsList } = this.context;
+
+    if (bookmarkIdsList.has(articleId)) bookmarkIdsList.delete(articleId);
+
+    this.setState({ isBooked: false });
+  };
+
+  getBookmarkButton = () => {
+    let resultButton;
+    const { isBooked } = this.state;
+    if (isBooked)
+      resultButton = (
+        <CustomButton
+          title="REMOVE BOOKMARK"
+          onClick={this.deleteBookmark}
+          iconComponent={<BsBookmarkDash />}
+        />
+      );
+    else
+      resultButton = (
+        <CustomButton
+          title="ADD BOOKMARK"
+          onClick={this.saveBookmark}
+          iconComponent={<BsBookmarkPlus />}
+        />
+      );
+
+    return resultButton;
   };
 
   render() {
@@ -44,11 +87,7 @@ export default class ArticleScreen extends Component {
         ) : (
           <>
             <div className={[styles["col-9"], styles["col-s-12"]].join(" ")}>
-              <CustomButton
-                title="ADD BOOKMARK"
-                onClick={this.saveBookmark}
-                iconComponent={<BsBookmarkPlus />}
-              />
+              {this.getBookmarkButton()}
               <p style={{ fontSize: "small" }}>{content.webPublicationDate}</p>
               <h1>{content.webTitle}</h1>
               <h3>{content.fields.headline}</h3>

@@ -7,6 +7,7 @@ import { getCategory } from "../../containers/category/service/CategoryService";
 import { notEmptyArray } from "../../utility/Validator";
 import NewsCards from "../../containers/card/NewsCards";
 import Header from "../../containers/header/Header";
+import Loading from "../loading/Loading";
 
 export default class Scroll extends Component {
   constructor(props) {
@@ -38,14 +39,13 @@ export default class Scroll extends Component {
     const { pageTitle } = this.props;
 
     return (
-      <div>
+      <div id="123">
         <Header pageTitle={pageTitle} />
         <InfiniteScroll
           dataLength={items.length}
           next={this.fetchMoreData}
           hasMore="true"
-          loader={<h4>Loading...</h4>}
-          scrollableTarget="scrollableDiv"
+          loader={<Loading />}
         >
           {notEmptyArray(items) ? (
             <div id="scrollableDiv">

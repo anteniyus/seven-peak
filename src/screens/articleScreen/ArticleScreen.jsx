@@ -5,6 +5,7 @@ import Loading from "../../components/loading/Loading";
 import styles from "../mainScreen/MainScreen.module.css";
 import articleStyles from "./ArticleScreen.module.css";
 import AppContext from "../../AppContext";
+import CustomButton from "../../components/customButton/CustomButton";
 
 export default class ArticleScreen extends Component {
   constructor(props) {
@@ -41,9 +42,7 @@ export default class ArticleScreen extends Component {
         ) : (
           <>
             <div className={[styles["col-9"], styles["col-s-12"]].join(" ")}>
-              <button type="button" onClick={this.saveBookmark}>
-                ADD BOOKMARK
-              </button>
+              <CustomButton title="ADD BOOKMARK" onClick={this.saveBookmark} />
               <p style={{ fontSize: "small" }}>{content.webPublicationDate}</p>
               <h1>{content.webTitle}</h1>
               <h3>{content.fields.headline}</h3>

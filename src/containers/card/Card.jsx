@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Redirect } from "react-router-dom";
 
-import { v4 as uuidv4 } from "uuid";
+import { v4 as UKG } from "uuid";
 
 import styles from "../../screens/mainScreen/MainScreen.module.css";
 import categoryStyles from "../category/Category.module.css";
@@ -30,7 +30,7 @@ export default class Card extends Component {
       <>
         <div
           className={[styles["col-3"], styles["col-s-12"]].join(" ")}
-          key={uuidv4()}
+          key={UKG()}
         >
           <div
             role="button"
@@ -76,7 +76,7 @@ Card.defaultProps = {
 Card.propTypes = {
   card: PropTypes.shape({
     id: PropTypes.string.isRequired,
-    fields: PropTypes.objectOf(PropTypes.string),
+    fields: PropTypes.shape({ thumbnail: PropTypes.string }),
     webTitle: PropTypes.string.isRequired,
   }).isRequired,
   tabIndex: PropTypes.number,

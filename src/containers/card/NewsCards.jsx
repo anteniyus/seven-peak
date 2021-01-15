@@ -1,20 +1,18 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { v4 as uuidv4 } from "uuid";
 
 import Card from "./Card";
 
-export default class NewsCards extends Component {
-  createUI = () => {
-    const { cardsList } = this.props;
+function NewsCards(props) {
+  const createUI = () => {
+    const { cardsList } = props;
     return cardsList.map((card, index) => (
       <Card card={card} tabIndex={index} key={uuidv4()} />
     ));
   };
 
-  render() {
-    return <>{this.createUI()}</>;
-  }
+  return createUI();
 }
 
 NewsCards.propTypes = {
@@ -26,3 +24,5 @@ NewsCards.propTypes = {
     })
   ).isRequired,
 };
+
+export default NewsCards;

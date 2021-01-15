@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from "uuid";
 
 class MenuItem extends Component {
   constructor(props) {
-    super();
+    super(props);
     this.state = {
       activeItem: props.defaultActiveItem
         ? props.defaultActiveItem

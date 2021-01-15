@@ -7,7 +7,6 @@ import AppContext from "../../AppContext";
 import { getArticle } from "../../containers/category/service/CategoryService";
 import Card from "../../containers/card/Card";
 
-// eslint-disable-next-line react/prefer-stateless-function
 export default class AllBookmarksScreen extends Component {
   constructor(props) {
     super(props);

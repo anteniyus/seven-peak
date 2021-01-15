@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Switch, Route } from "react-router-dom";
 
 import styles from "./MainScreen.module.css";
@@ -12,30 +12,24 @@ import ArticleScreen from "../articleScreen/ArticleScreen";
 import SearchScreen from "../searchScreen/SearchScreen";
 import AllBookmarksScreen from "../allBookmarksScreen/AllBookmarksScreen";
 
-export default class MainScreen extends Component {
-  constructor(props) {
-    super(props);
+function MainScreen() {
+  return (
+    <>
+      <NavigationArea />
 
-    this.searchScreenRef = React.createRef();
-  }
-
-  render() {
-    return (
-      <>
-        <NavigationArea showSearchResult={this.showSearchResult} />
-
-        <div className={styles.row}>
-          <Switch>
-            <Route path="/" component={HomeScreen} exact />
-            <Route path="/sports" component={SportsScreen} />
-            <Route path="/cultures" component={CultureScreen} />
-            <Route path="/lifestyles" component={LifestyleScreen} />
-            <Route path="/viewArticle" component={ArticleScreen} />
-            <Route path="/search" component={SearchScreen} />
-            <Route path="/allBookmarks" component={AllBookmarksScreen} />
-          </Switch>
-        </div>
-      </>
-    );
-  }
+      <div className={styles.row}>
+        <Switch>
+          <Route path="/" component={HomeScreen} exact />
+          <Route path="/sports" component={SportsScreen} />
+          <Route path="/cultures" component={CultureScreen} />
+          <Route path="/lifestyles" component={LifestyleScreen} />
+          <Route path="/viewArticle" component={ArticleScreen} />
+          <Route path="/search" component={SearchScreen} />
+          <Route path="/allBookmarks" component={AllBookmarksScreen} />
+        </Switch>
+      </div>
+    </>
+  );
 }
+
+export default MainScreen;

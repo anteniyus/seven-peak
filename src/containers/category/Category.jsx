@@ -6,7 +6,6 @@ import Loading from "../../components/loading/Loading";
 import NewsCards from "../card/NewsCards";
 
 import { notEmptyArray } from "../../utility/Validator";
-import AppContext from "../../AppContext";
 import Header from "../header/Header";
 
 export default class Category extends Component {
@@ -52,5 +51,3 @@ Category.propTypes = {
   params: PropTypes.shape({}),
   pageTitle: PropTypes.string.isRequired,
 };
-
-Category.contextType = AppContext;

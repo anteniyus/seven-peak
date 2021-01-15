@@ -1,9 +1,9 @@
 import React from "react";
-import Category from "../../containers/category/Category";
 import { MenuItems } from "../../containers/navigationArea/MenuItemsConstants";
+import Scroll from "../../components/scroll/Scroll";
 
 const LifestyleScreen = () => (
-  <Category url="/lifeandstyle" pageTitle={MenuItems.LIFESTYLE.name} />
+  <Scroll url="/lifeandstyle" pageTitle={MenuItems.LIFESTYLE.name} />
 );
 
 export default LifestyleScreen;

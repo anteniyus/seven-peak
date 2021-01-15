@@ -1,6 +1,6 @@
 import React from "react";
-import Category from "../../containers/category/Category";
+import Scroll from "../../components/scroll/Scroll";
 
-const HomeScreen = () => <Category url="/search" pageTitle="Top News" />;
+const HomeScreen = () => <Scroll url="/search" pageTitle="Top News" />;
 
 export default HomeScreen;

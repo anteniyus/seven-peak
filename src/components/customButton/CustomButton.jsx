@@ -21,11 +21,12 @@ function CustomButton(props) {
 
 CustomButton.defaultProps = {
   iconComponent: null,
+  onClick: () => {},
 };
 
 CustomButton.propTypes = {
   title: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
   iconComponent: PropTypes.element,
 };
 

@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { BsBookmarkPlus } from "react-icons/bs";
+
 import { getArticle } from "../../containers/category/service/CategoryService";
 import Loading from "../../components/loading/Loading";
 import styles from "../mainScreen/MainScreen.module.css";
@@ -42,7 +44,11 @@ export default class ArticleScreen extends Component {
         ) : (
           <>
             <div className={[styles["col-9"], styles["col-s-12"]].join(" ")}>
-              <CustomButton title="ADD BOOKMARK" onClick={this.saveBookmark} />
+              <CustomButton
+                title="ADD BOOKMARK"
+                onClick={this.saveBookmark}
+                iconComponent={<BsBookmarkPlus />}
+              />
               <p style={{ fontSize: "small" }}>{content.webPublicationDate}</p>
               <h1>{content.webTitle}</h1>
               <h3>{content.fields.headline}</h3>

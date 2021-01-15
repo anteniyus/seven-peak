@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-import Category from "../../containers/category/Category";
+import Scroll from "../../components/scroll/Scroll";
 
 export default class SearchScreen extends Component {
   constructor(props) {
@@ -33,7 +33,7 @@ export default class SearchScreen extends Component {
     const { q } = this.state;
     return (
       <div>
-        {q && <Category url="/search" params={{ q }} pageTitle="Search" />}
+        {q && <Scroll url="/search" params={{ q }} pageTitle="Search" />}
       </div>
     );
   }

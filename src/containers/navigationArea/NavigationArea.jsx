@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 
-import { IconContext } from "react-icons";
 import { FcMenu } from "react-icons/fc";
 import { FaSearch } from "react-icons/fa";
 
@@ -41,17 +40,17 @@ export default class NavigationArea extends Component {
       <div className={styles.navigationArea}>
         <h1>The Peaks</h1>
         <div className={bar ? barClass : navigationClass}>
-          <MenuItem menuItems={getMenuItems()} />
+          <div className={styles.test}>
+            <MenuItem menuItems={getMenuItems()} />
+          </div>
           <div
             className={styles.icon}
             onClick={this.handleMenu}
             aria-hidden="true"
           >
-            <IconContext.Provider value={{ color: "blue" }}>
-              <div>
-                <FcMenu />
-              </div>
-            </IconContext.Provider>
+            <div>
+              <FcMenu />
+            </div>
           </div>
 
           <div className={styles.input}>

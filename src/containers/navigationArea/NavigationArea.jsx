@@ -40,7 +40,7 @@ export default class NavigationArea extends Component {
       <div className={styles.navigationArea}>
         <h1>The Peaks</h1>
         <div className={bar ? barClass : navigationClass}>
-          <div className={styles.test}>
+          <div className={styles.menu}>
             <MenuItem menuItems={getMenuItems()} />
           </div>
           <div

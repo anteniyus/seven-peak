@@ -25,6 +25,10 @@
   display: none;
   color: white;
 }
+
+.navigation .menu {
+  padding-bottom: 0;
+}
 /**/
 .navigation .input {
   float: right;
@@ -58,11 +62,12 @@
     text-align: left;
   }
 
-  .navigation.bar .test {
+  .navigation.bar .menu {
     float: none;
     display: block;
     text-align: left;
     width: 85%;
+    padding-bottom: 0;
   }
 }
 

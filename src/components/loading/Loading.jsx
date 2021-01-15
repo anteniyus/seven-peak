@@ -10,9 +10,7 @@ const CenteredDiv = styled.div`
 function Loading() {
   return (
     <CenteredDiv>
-      <IconContext.Provider
-        value={{ color: "rgb(12, 53, 115)", size: "3em", padding: "5%" }}
-      >
+      <IconContext.Provider value={{ color: "rgb(12, 53, 115)", size: "3em" }}>
         <div>
           <AiOutlineLoading3Quarters style={{ margin: "15%" }} />
         </div>

@@ -1,11 +1,16 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Redirect } from "react-router-dom";
+import styled from "styled-components/";
 
 import { v4 as UKG } from "uuid";
 
 import styles from "../../screens/mainScreen/MainScreen.module.css";
 import categoryStyles from "../category/Category.module.css";
+import {
+  MenuItems,
+  getBySectionId,
+} from "../navigationArea/MenuItemsConstants";
 
 export default class Card extends Component {
   constructor(props) {
@@ -22,9 +27,19 @@ export default class Card extends Component {
     });
   };
 
+  getBorderBottomColor = (sectionId) => {
+    const menuItem = getBySectionId(sectionId);
+    return styled.div`
+      border-bottom: 3px solid
+        ${menuItem ? menuItem.color : MenuItems.HOME.color};
+    `;
+  };
+
   render() {
     const { card, tabIndex } = this.props;
     const { enableRedirect, articleId } = this.state;
+
+    const ColorBorderDiv = this.getBorderBottomColor(card.sectionId);
 
     return (
       <>
@@ -32,25 +47,27 @@ export default class Card extends Component {
           className={[styles["col-3"], styles["col-s-12"]].join(" ")}
           key={UKG()}
         >
-          <div
-            role="button"
-            tabIndex={tabIndex}
-            className={categoryStyles.container}
-            onClick={() => this.loadArticle(card.id)}
-            onKeyDown={() => this.loadArticle(card.id)}
-          >
-            <img
-              src={
-                card.fields && card.fields.thumbnail
-                  ? card.fields.thumbnail
-                  : process.env.PUBLIC_URL.concat("/thePeaks.jpg")
-              }
-              alt={card.webTitle}
-            />
-            <div className={categoryStyles.content}>
-              <p>{card.webTitle}</p>
+          <ColorBorderDiv>
+            <div
+              role="button"
+              tabIndex={tabIndex}
+              className={categoryStyles.container}
+              onClick={() => this.loadArticle(card.id)}
+              onKeyDown={() => this.loadArticle(card.id)}
+            >
+              <img
+                src={
+                  card.fields && card.fields.thumbnail
+                    ? card.fields.thumbnail
+                    : process.env.PUBLIC_URL.concat("/thePeaks.jpg")
+                }
+                alt={card.webTitle}
+              />
+              <div className={categoryStyles.content}>
+                <p>{card.webTitle}</p>
+              </div>
             </div>
-          </div>
+          </ColorBorderDiv>
         </div>
 
         {enableRedirect && (
@@ -78,6 +95,7 @@ Card.propTypes = {
     id: PropTypes.string.isRequired,
     fields: PropTypes.shape({ thumbnail: PropTypes.string }),
     webTitle: PropTypes.string.isRequired,
+    sectionId: PropTypes.string.isRequired,
   }).isRequired,
   tabIndex: PropTypes.number,
 };

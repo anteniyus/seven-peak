@@ -4,6 +4,10 @@
   padding: 15px;
 }
 
+.navigationArea h1 {
+  margin: 0;
+}
+
 .navigation {
   overflow: hidden;
 }

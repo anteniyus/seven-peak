@@ -46,8 +46,10 @@ export default class Card extends Component {
         <div
           className={
             notEmptyArray(styleConfig.mainClass)
-              ? styleConfig.mainClass
-              : ["col-l-3", "col-m-4", "col-s-6", "col-mob-12"].join(" ")
+              ? styleConfig.mainClass.join(" ")
+              : ["col-l-3", "col-m-4", "col-s-6", "col-t-6", "col-mob-12"].join(
+                  " "
+                )
           }
           key={UKG()}
         >

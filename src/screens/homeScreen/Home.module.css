@@ -2,6 +2,12 @@
   margin-top: 5%;
 }
 
+.zero {
+  width: 100%;
+  display: inline-block;
+  float: left;
+}
+
 .first {
   width: 50%;
   display: inline-block;

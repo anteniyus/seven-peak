@@ -35,14 +35,17 @@ class Home extends Component {
             <div className="col-l-12">
               <Card
                 card={items[0]}
-                styleConfig={{ autoHeight: true, mainClass: ["col-l-6"] }}
+                styleConfig={{
+                  autoHeight: true,
+                  mainClass: ["col-l-6", "col-m-6", "col-s-6"],
+                }}
               />
 
               <Card
                 card={items[1]}
                 styleConfig={{
                   autoHeight: true,
-                  mainClass: ["col-l-3"],
+                  mainClass: ["col-l-3", "col-m-3", "col-s-6"],
                 }}
               />
 
@@ -50,7 +53,7 @@ class Home extends Component {
                 card={items[2]}
                 styleConfig={{
                   autoHeight: true,
-                  mainClass: ["col-l-3"],
+                  mainClass: ["col-l-3", "col-m-3", "col-s-6"],
                 }}
               />
 
@@ -58,7 +61,7 @@ class Home extends Component {
                 card={items[3]}
                 styleConfig={{
                   autoHeight: true,
-                  mainClass: ["col-l-3"],
+                  mainClass: ["col-l-3", "col-m-3", "col-s-3"],
                   onlyContent: true,
                 }}
               />
@@ -67,7 +70,7 @@ class Home extends Component {
                 card={items[4]}
                 styleConfig={{
                   autoHeight: true,
-                  mainClass: ["col-l-3"],
+                  mainClass: ["col-l-3", "col-m-3", "col-s-3"],
                   onlyContent: true,
                 }}
               />
@@ -78,7 +81,7 @@ class Home extends Component {
                 card={items[5]}
                 styleConfig={{
                   autoHeight: true,
-                  mainClass: ["col-l-3"],
+                  mainClass: ["col-l-3", "col-m-3"],
                 }}
               />
 
@@ -86,7 +89,7 @@ class Home extends Component {
                 card={items[6]}
                 styleConfig={{
                   autoHeight: true,
-                  mainClass: ["col-l-3"],
+                  mainClass: ["col-l-3", "col-m-3"],
                 }}
               />
 
@@ -94,7 +97,7 @@ class Home extends Component {
                 card={items[7]}
                 styleConfig={{
                   autoHeight: true,
-                  mainClass: ["col-l-3"],
+                  mainClass: ["col-l-3", "col-m-3"],
                 }}
               />
 
@@ -102,7 +105,7 @@ class Home extends Component {
                 card={items[8]}
                 styleConfig={{
                   autoHeight: true,
-                  mainClass: ["col-l-3"],
+                  mainClass: ["col-l-3", "col-m-3"],
                 }}
               />
             </div>

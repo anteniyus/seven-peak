@@ -5,13 +5,25 @@
   margin: 0 auto;
 }
 
+.autoHeightContainer {
+  height: auto;
+}
+
 .container img {
   vertical-align: middle;
   height: 100%;
 }
 
-.container .content {
+.relative {
+  position: relative;
+}
+
+.absolute {
   position: absolute;
+}
+
+.container .content {
+  /*position: absolute;*/
   bottom: 0;
   background: rgb(0, 0, 0); /* Fallback color */
   background: rgba(12, 53, 115, 0.9); /* Black background with 0.5 opacity */
@@ -22,6 +34,7 @@
   text-overflow: ellipsis;
   font-weight: normal;
   font-size: large;
+  overflow: hidden;
 }
 
 .content p {

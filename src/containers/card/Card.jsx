@@ -5,6 +5,7 @@ import styled from "styled-components/";
 
 import { v4 as UKG } from "uuid";
 
+import { notEmptyArray } from "../../utility/Validator";
 import styles from "./Card.module.css";
 import {
   MenuItems,
@@ -35,7 +36,7 @@ export default class Card extends Component {
   };
 
   render() {
-    const { card, tabIndex } = this.props;
+    const { card, tabIndex, styleConfig } = this.props;
     const { enableRedirect, articleId } = this.state;
 
     const ColorBorderDiv = this.getBorderBottomColor(card.sectionId);
@@ -43,26 +44,42 @@ export default class Card extends Component {
     return (
       <>
         <div
-          className={["col-l-3", "col-m-4", "col-s-6", "col-mob-12"].join(" ")}
+          className={
+            notEmptyArray(styleConfig.mainClass)
+              ? styleConfig.mainClass
+              : ["col-l-3", "col-m-4", "col-s-6", "col-mob-12"].join(" ")
+          }
           key={UKG()}
         >
           <ColorBorderDiv>
             <div
               role="button"
               tabIndex={tabIndex}
-              className={styles.container}
+              className={
+                styleConfig.autoHeight
+                  ? [styles.container, styles.autoHeightContainer].join(" ")
+                  : styles.container
+              }
               onClick={() => this.loadArticle(card.id)}
               onKeyDown={() => this.loadArticle(card.id)}
             >
-              <img
-                src={
-                  card.fields && card.fields.thumbnail
-                    ? card.fields.thumbnail
-                    : process.env.PUBLIC_URL.concat("/thePeaks.jpg")
+              {!styleConfig.onlyContent && (
+                <img
+                  src={
+                    card.fields && card.fields.thumbnail
+                      ? card.fields.thumbnail
+                      : process.env.PUBLIC_URL.concat("/thePeaks.jpg")
+                  }
+                  alt={card.webTitle}
+                />
+              )}
+              <div
+                className={
+                  styleConfig.onlyContent
+                    ? [styles.content, styles.relative].join(" ")
+                    : [styles.content, styles.absolute].join(" ")
                 }
-                alt={card.webTitle}
-              />
-              <div className={styles.content}>
+              >
                 <p>{card.webTitle}</p>
               </div>
             </div>
@@ -87,6 +104,7 @@ export default class Card extends Component {
 
 Card.defaultProps = {
   tabIndex: 0,
+  styleConfig: {},
 };
 
 Card.propTypes = {
@@ -97,4 +115,10 @@ Card.propTypes = {
     sectionId: PropTypes.string.isRequired,
   }).isRequired,
   tabIndex: PropTypes.number,
+  styleConfig: PropTypes.shape({
+    autoHeight: PropTypes.bool,
+    fullWidth: PropTypes.bool,
+    onlyContent: PropTypes.bool,
+    mainClass: PropTypes.arrayOf(PropTypes.string),
+  }),
 };

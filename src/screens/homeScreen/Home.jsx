@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { getCategory } from "../../containers/category/service/CategoryService";
 import Card from "../../containers/card/Card";
 import { notEmptyArray } from "../../utility/Validator";
+import CustomCategory from "../../containers/category/CustomCategory";
 
 // const firstDiv = ["col-l-6", "col-m-6", "col-s-12", "col-mob-12"];
 // eslint-disable-next-line react/prefer-stateless-function
@@ -107,6 +108,14 @@ class Home extends Component {
                   autoHeight: true,
                   mainClass: ["col-l-3", "col-m-3"],
                 }}
+              />
+            </div>
+
+            <div className="col-l-12">
+              <CustomCategory
+                url="/sport"
+                pageTitle="Sports"
+                numOfItemsToShow={4}
               />
             </div>
           </>

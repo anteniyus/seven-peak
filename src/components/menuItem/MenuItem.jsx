@@ -9,10 +9,16 @@ class MenuItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeItem: props.defaultActiveItem
-        ? props.defaultActiveItem
-        : props.location.pathname,
+      activeItem: "",
     };
+  }
+
+  componentDidMount() {
+    const { defaultActiveItem, location } = this.props;
+    console.log(defaultActiveItem || location.pathname);
+    this.setState({
+      activeItem: defaultActiveItem || location.pathname,
+    });
   }
 
   handleClick = (menuItem) => {
@@ -26,9 +32,10 @@ class MenuItem extends Component {
     let ColorfulDiv = null;
     return menuItems.map((menuItem) => {
       ColorfulDiv = styled.div`
-        color: ${menuItem.url === activeItem ? "black" : "white"};
-        background-color: ${menuItem.url === activeItem ? menuItem.color : ""};
-        border-bottom: 3px solid ${menuItem.color};
+        color: ${() => (menuItem.url === activeItem ? "black" : "white")};
+        background-color: ${() =>
+          menuItem.url === activeItem ? menuItem.color : ""};
+        border-bottom: 3px solid ${() => menuItem.color};
       `;
 
       return (

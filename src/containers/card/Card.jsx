@@ -30,7 +30,7 @@ export default class Card extends Component {
     const menuItem = getBySectionId(sectionId);
     return styled.div`
       border-bottom: 3px solid
-        ${menuItem ? menuItem.color : MenuItems.HOME.color};
+        ${() => (menuItem ? menuItem.color : MenuItems.HOME.color)};
     `;
   };
 

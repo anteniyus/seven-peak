@@ -15,7 +15,6 @@ class MenuItem extends Component {
 
   componentDidMount() {
     const { defaultActiveItem, location } = this.props;
-    console.log(defaultActiveItem || location.pathname);
     this.setState({
       activeItem: defaultActiveItem || location.pathname,
     });

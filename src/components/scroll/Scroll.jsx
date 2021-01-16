@@ -9,12 +9,15 @@ import NewsCards from "../../containers/card/NewsCards";
 import Header from "../../containers/header/Header";
 import Loading from "../loading/Loading";
 
+import { OrderBy } from "../../enums/OrderBy";
+
 export default class Scroll extends Component {
   constructor(props) {
     super(props);
     this.state = {
       items: [],
       page: 1,
+      orderBy: OrderBy.NEWEST.value,
     };
   }
 
@@ -23,14 +26,22 @@ export default class Scroll extends Component {
   }
 
   fetchMoreData = () => {
-    const { items, page } = this.state;
+    const { items, page, orderBy } = this.state;
 
     const { url, params } = this.props;
-    getCategory(url, { ...params, page }).then((response) => {
-      this.setState({
-        items: [...items, ...response.data.response.results],
-        page: page + 1,
-      });
+    getCategory(url, { ...params, page, "order-by": orderBy }).then(
+      (response) => {
+        this.setState({
+          items: [...items, ...response.data.response.results],
+          page: page + 1,
+        });
+      }
+    );
+  };
+
+  refreshByOrdering = (order) => {
+    this.setState({ page: 1, items: [], orderBy: order }, () => {
+      this.fetchMoreData();
     });
   };
 
@@ -40,7 +51,10 @@ export default class Scroll extends Component {
 
     return (
       <div id="123">
-        <Header pageTitle={pageTitle} />
+        <Header
+          pageTitle={pageTitle}
+          refreshByOrdering={this.refreshByOrdering}
+        />
         <InfiniteScroll
           dataLength={items.length}
           next={this.fetchMoreData}

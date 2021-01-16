@@ -8,6 +8,19 @@
   margin-top: 1%;
 }
 
+.header a {
+  float: right;
+  display: block;
+  text-align: left;
+}
+
+.right {
+  float: right;
+}
+.left {
+  float: left;
+}
+
 .title {
   float: left;
   text-align: left;
@@ -15,7 +28,18 @@
 
 @media screen and (max-width: 500px) {
   .header a {
-    float: none;
+    float: left;
+    display: block;
+    text-align: left;
+    width: 100%;
+  }
+
+  .header a button {
+    width: 100%;
+  }
+
+  .header select {
+    float: right;
     display: block;
     text-align: left;
   }

@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { v4 as uuidv4 } from "uuid";
+import { v4 as UKG } from "uuid";
 
 import Card from "./Card";
 
@@ -8,7 +8,7 @@ function NewsCards(props) {
   const createUI = () => {
     const { cardsList } = props;
     return cardsList.map((card, index) => (
-      <Card card={card} tabIndex={index} key={uuidv4()} />
+      <Card card={card} tabIndex={index} key={UKG()} />
     ));
   };
 

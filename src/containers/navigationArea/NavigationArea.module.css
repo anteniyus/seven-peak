@@ -75,22 +75,14 @@ input {
   outline: none;
   background-color: #09357b;
 }
-input[type="search"] {
-  -webkit-appearance: textfield;
-  -webkit-box-sizing: content-box;
-  font-family: inherit;
-  font-size: 100%;
-}
-input::-webkit-search-decoration,
-input::-webkit-search-cancel-button {
-  display: none;
-}
 
 input[type="search"] {
+  font-family: inherit;
+  font-size: 100%;
   border: none;
   border-bottom: solid white;
   padding: 9px 15px 9px 15px;
-  width: 55px;
+  width: 0px;
 
   -webkit-transition: all 0.5s;
   -moz-transition: all 0.5s;

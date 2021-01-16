@@ -4,8 +4,7 @@ import { BsBookmarkPlus, BsBookmarkDash } from "react-icons/bs";
 
 import { getArticle } from "../../containers/category/service/CategoryService";
 import Loading from "../../components/loading/Loading";
-import styles from "../mainScreen/MainScreen.module.css";
-import articleStyles from "./ArticleScreen.module.css";
+import styles from "./ArticleScreen.module.css";
 import AppContext from "../../AppContext";
 import CustomButton from "../../components/customButton/CustomButton";
 
@@ -86,19 +85,19 @@ export default class ArticleScreen extends Component {
           <Loading />
         ) : (
           <>
-            <div className={[styles["col-9"], styles["col-s-12"]].join(" ")}>
+            <div className={["col-l-9", "col-m-9", "col-mob-12"].join(" ")}>
               {this.getBookmarkButton()}
               <p style={{ fontSize: "small" }}>{content.webPublicationDate}</p>
               <h1>{content.webTitle}</h1>
               <h3>{content.fields.headline}</h3>
               <hr />
               <article
-                className={articleStyles.article}
+                className={styles.article}
                 style={{ wordWrap: "break-word" }}
                 dangerouslySetInnerHTML={{ __html: content.fields.body }}
               />
             </div>
-            <div className={[styles["col-3"], styles["col-s-12"]].join(" ")}>
+            <div className={["col-l-3", "col-m-3", "col-mob-12"].join(" ")}>
               <img
                 src={
                   content.fields.thumbnail

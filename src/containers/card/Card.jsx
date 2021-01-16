@@ -5,8 +5,7 @@ import styled from "styled-components/";
 
 import { v4 as UKG } from "uuid";
 
-import styles from "../../screens/mainScreen/MainScreen.module.css";
-import categoryStyles from "../category/Category.module.css";
+import styles from "./Card.module.css";
 import {
   MenuItems,
   getBySectionId,
@@ -44,14 +43,14 @@ export default class Card extends Component {
     return (
       <>
         <div
-          className={[styles["col-3"], styles["col-s-12"]].join(" ")}
+          className={["col-l-3", "col-m-4", "col-s-6", "col-mob-12"].join(" ")}
           key={UKG()}
         >
           <ColorBorderDiv>
             <div
               role="button"
               tabIndex={tabIndex}
-              className={categoryStyles.container}
+              className={styles.container}
               onClick={() => this.loadArticle(card.id)}
               onKeyDown={() => this.loadArticle(card.id)}
             >
@@ -63,7 +62,7 @@ export default class Card extends Component {
                 }
                 alt={card.webTitle}
               />
-              <div className={categoryStyles.content}>
+              <div className={styles.content}>
                 <p>{card.webTitle}</p>
               </div>
             </div>

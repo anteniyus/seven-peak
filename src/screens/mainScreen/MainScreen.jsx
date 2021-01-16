@@ -1,8 +1,6 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 
-import styles from "./MainScreen.module.css";
-
 import NavigationArea from "../../containers/navigationArea/NavigationArea";
 import HomeScreen from "../homeScreen/HomeScreen";
 import SportsScreen from "../sportsScreen/SportsScreen";
@@ -17,7 +15,7 @@ function MainScreen() {
     <>
       <NavigationArea />
 
-      <div className={styles.row}>
+      <div className="row">
         <Switch>
           <Route path="/" component={HomeScreen} exact />
           <Route path="/sports" component={SportsScreen} />

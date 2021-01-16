@@ -4,6 +4,7 @@ import { getCategory } from "../../containers/category/service/CategoryService";
 import Card from "../../containers/card/Card";
 import { notEmptyArray } from "../../utility/Validator";
 import CustomCategory from "../../containers/category/CustomCategory";
+import { MenuItems } from "../../containers/navigationArea/MenuItemsConstants";
 
 // const firstDiv = ["col-l-6", "col-m-6", "col-s-12", "col-mob-12"];
 // eslint-disable-next-line react/prefer-stateless-function
@@ -113,8 +114,8 @@ class Home extends Component {
 
             <div className="col-l-12">
               <CustomCategory
-                url="/sport"
-                pageTitle="Sports"
+                url={MenuItems.SPORTS.url}
+                pageTitle={MenuItems.SPORTS.name}
                 numOfItemsToShow={4}
               />
             </div>

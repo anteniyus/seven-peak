@@ -19,9 +19,9 @@ function MainScreen() {
       <div className="row">
         <Switch>
           <Route path="/" component={Home} exact />
-          <Route path="/sports" component={SportsScreen} />
-          <Route path="/cultures" component={CultureScreen} />
-          <Route path="/lifestyles" component={LifestyleScreen} />
+          <Route path="/sport" component={SportsScreen} />
+          <Route path="/culture" component={CultureScreen} />
+          <Route path="/lifestyle" component={LifestyleScreen} />
           <Route path="/viewArticle" component={ArticleScreen} />
           <Route path="/search" component={SearchScreen} />
           <Route path="/allBookmarks" component={AllBookmarksScreen} />

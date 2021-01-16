@@ -5,19 +5,19 @@ const MenuItems = {
   SPORTS: {
     name: "SPORTS",
     color: "#f50057",
-    url: "/sports",
+    url: "/sport",
     sectionId: "sport",
   },
   CULTURE: {
     name: "CULTURE",
     color: "#ffca28",
-    url: "/cultures",
+    url: "/culture",
     sectionId: "culture",
   },
   LIFESTYLE: {
     name: "LIFESTYLE",
     color: "#2196f3",
-    url: "/lifeStyles",
+    url: "/lifeStyle",
     sectionId: "lifeandstyle",
   },
 };

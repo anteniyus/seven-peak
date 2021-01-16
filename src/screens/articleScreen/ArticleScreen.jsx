@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { BsBookmarkPlus, BsBookmarkDash } from "react-icons/bs";
+import Moment from "react-moment";
+import "moment-timezone";
 
 import { getArticle } from "../../containers/category/service/CategoryService";
 import Loading from "../../components/loading/Loading";
@@ -87,16 +89,31 @@ export default class ArticleScreen extends Component {
           <>
             <div className={["col-l-9", "col-m-9", "col-mob-12"].join(" ")}>
               {this.getBookmarkButton()}
-              <p style={{ fontSize: "small" }}>{content.webPublicationDate}</p>
+
+              <Moment
+                format="ddd D MMM YYYY HH:mm z"
+                tz="Europe/London"
+                element="p"
+                style={{ fontSize: "small" }}
+                utc
+                local
+              >
+                {content.webPublicationDate}
+              </Moment>
+
               <h1>{content.webTitle}</h1>
+
               <h3>{content.fields.headline}</h3>
+
               <hr />
+
               <article
                 className={styles.article}
                 style={{ wordWrap: "break-word" }}
                 dangerouslySetInnerHTML={{ __html: content.fields.body }}
               />
             </div>
+
             <div className={["col-l-3", "col-m-3", "col-mob-12"].join(" ")}>
               <img
                 src={

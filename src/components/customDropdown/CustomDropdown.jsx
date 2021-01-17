@@ -1,9 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 
 import { v4 as UKG } from "uuid";
-
-import { isFunction } from "../../utility/Validator";
 
 const colourStyles = {
   fontSize: "16px",
@@ -23,21 +21,10 @@ const colourStyles = {
 };
 
 function CustomDropdown(props) {
-  const { options, onChange } = props;
-  const [value, setValue] = useState(0);
-
-  function changeHandler(selectedValue) {
-    setValue(selectedValue);
-    console.log(onChange);
-    if (isFunction(onChange)) onChange(selectedValue);
-  }
+  const { options, value, onChange } = props;
 
   return (
-    <select
-      style={colourStyles}
-      value={value}
-      onChange={(event) => changeHandler(event.target.value)}
-    >
+    <select style={colourStyles} value={value} onChange={onChange}>
       {/* eslint-disable-next-line react/prop-types */}
       {options.map((n) => (
         <option value={n.value} key={UKG()}>
@@ -48,15 +35,18 @@ function CustomDropdown(props) {
   );
 }
 
+const optionsPropType = PropTypes.shape({
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  label: PropTypes.string.isRequired,
+});
+
 CustomDropdown.defaultProps = {
   onChange: () => {},
 };
 
 CustomDropdown.propTypes = {
-  options: PropTypes.arrayOf({
-    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-    label: PropTypes.string.isRequired,
-  }).isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  options: PropTypes.arrayOf(optionsPropType).isRequired,
   onChange: PropTypes.func,
 };
 

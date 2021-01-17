@@ -17,7 +17,7 @@ export default class Scroll extends Component {
     this.state = {
       items: [],
       page: 1,
-      orderBy: OrderBy.NEWEST.value,
+      orderBy: props.params.orderBy || OrderBy.NEWEST.value,
     };
   }
 
@@ -39,21 +39,22 @@ export default class Scroll extends Component {
     );
   };
 
-  refreshByOrdering = (order) => {
-    this.setState({ page: 1, items: [], orderBy: order }, () => {
+  refreshByOrdering = (orderBy) => {
+    this.setState({ page: 1, items: [], orderBy }, () => {
       this.fetchMoreData();
     });
   };
 
   render() {
     const { items } = this.state;
-    const { pageTitle } = this.props;
+    const { pageTitle, params } = this.props;
 
     return (
       <div id="123">
         <Header
           pageTitle={pageTitle}
           refreshByOrdering={this.refreshByOrdering}
+          defaultOrderBy={params.orderBy}
         />
         <InfiniteScroll
           dataLength={items.length}
@@ -80,6 +81,6 @@ Scroll.defaultProps = {
 
 Scroll.propTypes = {
   url: PropTypes.string.isRequired,
-  params: PropTypes.shape({}),
+  params: PropTypes.shape({ orderBy: PropTypes.string }),
   pageTitle: PropTypes.string.isRequired,
 };

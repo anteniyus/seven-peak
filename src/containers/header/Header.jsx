@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { BsFillBookmarkFill } from "react-icons/bs";
@@ -8,12 +8,20 @@ import styles from "./Header.module.css";
 import CustomButton from "../../components/customButton/CustomButton";
 import CustomDropdown from "../../components/customDropdown/CustomDropdown";
 
-import { GetAllOrderBy } from "../../enums/OrderBy";
+import { GetAllOrderBy, OrderBy } from "../../enums/OrderBy";
+import { isFunction } from "../../utility/Validator";
 
 function Header(props) {
-  const { pageTitle, refreshByOrdering } = props;
+  const { pageTitle, refreshByOrdering, defaultOrderBy } = props;
 
   const options = GetAllOrderBy();
+
+  const [orderBy, setOrderBy] = useState(defaultOrderBy || 0);
+
+  function changeHandler(selectedValue) {
+    setOrderBy(selectedValue);
+    if (isFunction(refreshByOrdering)) refreshByOrdering(selectedValue);
+  }
 
   return (
     <>
@@ -25,7 +33,11 @@ function Header(props) {
         </div>
 
         <div className={["col-l-2", "col-mob-12", styles.right].join(" ")}>
-          <CustomDropdown options={options} onChange={refreshByOrdering} />
+          <CustomDropdown
+            options={options}
+            value={orderBy}
+            onChange={(event) => changeHandler(event.target.value)}
+          />
         </div>
 
         <div className={["col-l-4", "col-mob-12", styles.right].join(" ")}>
@@ -43,11 +55,13 @@ function Header(props) {
 
 Header.defaultProps = {
   refreshByOrdering: () => {},
+  defaultOrderBy: OrderBy.NEWEST.value,
 };
 
 Header.propTypes = {
   pageTitle: PropTypes.string.isRequired,
   refreshByOrdering: PropTypes.func,
+  defaultOrderBy: PropTypes.string,
 };
 
 export default Header;

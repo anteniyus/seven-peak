@@ -29,7 +29,7 @@ export default class CustomCategory extends Component {
   }
 
   createUI = (categoryData) => {
-    const { pageTitle, numOfItemsToShow } = this.props;
+    const { pageTitle, numOfItemsToShow, params } = this.props;
     return (
       <>
         <div className={styles.header}>
@@ -40,7 +40,16 @@ export default class CustomCategory extends Component {
           </div>
 
           <div className={["col-l-6", "col-mob-6", styles.right].join(" ")}>
-            <Link to={MenuItems.SPORTS.url}>See All</Link>
+            <Link
+              to={{
+                pathname: MenuItems.SPORTS.url,
+                state: {
+                  orderBy: params["order-by"],
+                },
+              }}
+            >
+              See All
+            </Link>
           </div>
         </div>
 
@@ -63,7 +72,7 @@ CustomCategory.defaultProps = {
 
 CustomCategory.propTypes = {
   url: PropTypes.string.isRequired,
-  params: PropTypes.shape({}),
+  params: PropTypes.shape({ "order-by": PropTypes.string }),
   pageTitle: PropTypes.string.isRequired,
   numOfItemsToShow: PropTypes.number.isRequired,
 };

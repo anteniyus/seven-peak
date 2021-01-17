@@ -6,6 +6,8 @@ import { notEmptyArray } from "../../utility/Validator";
 import CustomCategory from "../../containers/category/CustomCategory";
 import { MenuItems } from "../../containers/navigationArea/MenuItemsConstants";
 import Loading from "../../components/loading/Loading";
+import Header from "../../containers/header/Header";
+import { OrderBy } from "../../enums/OrderBy";
 
 class Home extends Component {
   constructor(props) {
@@ -13,6 +15,7 @@ class Home extends Component {
     this.state = {
       items: [],
       loading: true,
+      orderBy: OrderBy.NEWEST.value,
     };
   }
 
@@ -21,7 +24,9 @@ class Home extends Component {
   }
 
   fetchData = () => {
-    getCategory("/search", {}).then((response) => {
+    const { orderBy } = this.state;
+
+    getCategory("/search", { "order-by": orderBy }).then((response) => {
       this.setState({
         items: [...response.data.response.results],
         loading: false,
@@ -29,8 +34,14 @@ class Home extends Component {
     });
   };
 
+  refreshByOrdering = (order) => {
+    this.setState({ loading: true, items: [], orderBy: order }, () => {
+      this.fetchData();
+    });
+  };
+
   createUI = () => {
-    const { items } = this.state;
+    const { items, orderBy } = this.state;
 
     return notEmptyArray(items) ? (
       <>
@@ -123,6 +134,7 @@ class Home extends Component {
             url={MenuItems.SPORTS.url}
             pageTitle={MenuItems.SPORTS.name}
             numOfItemsToShow={4}
+            params={{ "order-by": orderBy }}
           />
         </div>
       </>
@@ -133,7 +145,15 @@ class Home extends Component {
 
   render() {
     const { loading } = this.state;
-    return <div>{loading ? <Loading /> : this.createUI()}</div>;
+    return (
+      <div>
+        <Header
+          pageTitle="Top Stories"
+          refreshByOrdering={this.refreshByOrdering}
+        />
+        {loading ? <Loading /> : this.createUI()}
+      </div>
+    );
   }
 }
 

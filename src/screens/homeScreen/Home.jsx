@@ -59,6 +59,7 @@ class Home extends Component {
                 "col-t-6",
                 "col-mob-12",
               ],
+              height: "400px",
             }}
           />
 
@@ -72,6 +73,7 @@ class Home extends Component {
                 "col-t-6",
                 "col-mob-12",
               ],
+              height: "400px",
             }}
           />
 
@@ -86,6 +88,7 @@ class Home extends Component {
                 "col-mob-12",
               ],
               onlyContent: true,
+              height: "200px",
             }}
           />
 
@@ -100,6 +103,7 @@ class Home extends Component {
                 "col-mob-12",
               ],
               onlyContent: true,
+              height: "200px",
             }}
           />
         </div>

@@ -54,7 +54,11 @@ export default class NavigationArea extends Component {
           </div>
 
           <div className={styles.input}>
-            <form>
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+              }}
+            >
               <input
                 type="search"
                 placeholder="Search"

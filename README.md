@@ -7,8 +7,8 @@
 
 This project uses **The Guardian OpenPlatform** for fetching news.
 
-It is implemented from scratch, and also it is responsive without using any UI framework.
-It has four sections: **_Top Stories_**, **_Sports_**, **_Culture_** and **_Lifestyle_**
+It is implemented from scratch, and also it is responsive without using any UI frameworks.
+It includes four sections: **_Top Stories_**, **_Sports_**, **_Culture_** and **_Lifestyle_**
 and you can also read an article or bookmark it to read it later.
 Also, it supports live search for more user-friendly and interactive searches.
 

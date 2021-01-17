@@ -27,11 +27,19 @@ export default class Card extends Component {
     });
   };
 
-  getBorderBottomColor = (sectionId) => {
+  getBorderBottomColor = (sectionId, styleConfig) => {
     const menuItem = getBySectionId(sectionId);
     return styled.div`
       border-bottom: 3px solid
         ${() => (menuItem ? menuItem.color : MenuItems.HOME.color)};
+
+      @media (min-width: 1200px) {
+        height: ${() => (styleConfig.height ? styleConfig.height : "300px")};
+      }
+
+      @media (min-width: 1550px) {
+        height: ${() => (styleConfig.height ? styleConfig.height : "300px")};
+      }
     `;
   };
 
@@ -39,7 +47,10 @@ export default class Card extends Component {
     const { card, tabIndex, styleConfig } = this.props;
     const { enableRedirect, articleId } = this.state;
 
-    const ColorBorderDiv = this.getBorderBottomColor(card.sectionId);
+    const ColorBorderDiv = this.getBorderBottomColor(
+      card.sectionId,
+      styleConfig
+    );
 
     return (
       <>
@@ -53,37 +64,31 @@ export default class Card extends Component {
           }
           key={UKG()}
         >
-          <ColorBorderDiv>
-            <div
-              role="button"
-              tabIndex={tabIndex}
-              className={
-                styleConfig.autoHeight
-                  ? [styles.container, styles.autoHeightContainer].join(" ")
-                  : styles.container
-              }
-              onClick={() => this.loadArticle(card.id)}
-              onKeyDown={() => this.loadArticle(card.id)}
-            >
-              {!styleConfig.onlyContent && (
-                <img
-                  src={
-                    card.fields && card.fields.thumbnail
-                      ? card.fields.thumbnail
-                      : process.env.PUBLIC_URL.concat("/thePeaks.jpg")
-                  }
-                  alt={card.webTitle}
-                />
-              )}
-              <div
-                className={
-                  styleConfig.onlyContent
-                    ? [styles.content, styles.relative].join(" ")
-                    : [styles.content, styles.absolute].join(" ")
+          <ColorBorderDiv
+            role="button"
+            tabIndex={tabIndex}
+            className={styles.container}
+            onClick={() => this.loadArticle(card.id)}
+            onKeyDown={() => this.loadArticle(card.id)}
+          >
+            {!styleConfig.onlyContent && (
+              <img
+                src={
+                  card.fields && card.fields.thumbnail
+                    ? card.fields.thumbnail
+                    : process.env.PUBLIC_URL.concat("/thePeaks.jpg")
                 }
-              >
-                <p>{card.webTitle}</p>
-              </div>
+                alt={card.webTitle}
+              />
+            )}
+            <div
+              className={
+                styleConfig.onlyContent
+                  ? [styles.content, styles.relative].join(" ")
+                  : [styles.content, styles.absolute].join(" ")
+              }
+            >
+              <p>{card.webTitle}</p>
             </div>
           </ColorBorderDiv>
         </div>
@@ -118,9 +123,9 @@ Card.propTypes = {
   }).isRequired,
   tabIndex: PropTypes.number,
   styleConfig: PropTypes.shape({
-    autoHeight: PropTypes.bool,
     fullWidth: PropTypes.bool,
     onlyContent: PropTypes.bool,
     mainClass: PropTypes.arrayOf(PropTypes.string),
+    height: PropTypes.string,
   }),
 };

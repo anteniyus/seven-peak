@@ -6,8 +6,6 @@ import { notEmptyArray } from "../../utility/Validator";
 import CustomCategory from "../../containers/category/CustomCategory";
 import { MenuItems } from "../../containers/navigationArea/MenuItemsConstants";
 
-// const firstDiv = ["col-l-6", "col-m-6", "col-s-12", "col-mob-12"];
-// eslint-disable-next-line react/prefer-stateless-function
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -38,32 +36,53 @@ class Home extends Component {
               <Card
                 card={items[0]}
                 styleConfig={{
-                  autoHeight: true,
-                  mainClass: ["col-l-6", "col-m-6", "col-s-6"],
+                  mainClass: [
+                    "col-l-6",
+                    "col-m-6",
+                    "col-s-6",
+                    "col-t-6",
+                    "col-mob-12",
+                  ],
+                  height: "630px",
                 }}
               />
 
               <Card
                 card={items[1]}
                 styleConfig={{
-                  autoHeight: true,
-                  mainClass: ["col-l-3", "col-m-3", "col-s-6"],
+                  mainClass: [
+                    "col-l-3",
+                    "col-m-3",
+                    "col-s-6",
+                    "col-t-6",
+                    "col-mob-12",
+                  ],
                 }}
               />
 
               <Card
                 card={items[2]}
                 styleConfig={{
-                  autoHeight: true,
-                  mainClass: ["col-l-3", "col-m-3", "col-s-6"],
+                  mainClass: [
+                    "col-l-3",
+                    "col-m-3",
+                    "col-s-6",
+                    "col-t-6",
+                    "col-mob-12",
+                  ],
                 }}
               />
 
               <Card
                 card={items[3]}
                 styleConfig={{
-                  autoHeight: true,
-                  mainClass: ["col-l-3", "col-m-3", "col-s-3"],
+                  mainClass: [
+                    "col-l-3",
+                    "col-m-3",
+                    "col-s-3",
+                    "col-t-6",
+                    "col-mob-12",
+                  ],
                   onlyContent: true,
                 }}
               />
@@ -71,45 +90,26 @@ class Home extends Component {
               <Card
                 card={items[4]}
                 styleConfig={{
-                  autoHeight: true,
-                  mainClass: ["col-l-3", "col-m-3", "col-s-3"],
+                  mainClass: [
+                    "col-l-3",
+                    "col-m-3",
+                    "col-s-3",
+                    "col-t-6",
+                    "col-mob-12",
+                  ],
                   onlyContent: true,
                 }}
               />
             </div>
 
             <div className="col-l-12">
-              <Card
-                card={items[5]}
-                styleConfig={{
-                  autoHeight: true,
-                  mainClass: ["col-l-3", "col-m-3"],
-                }}
-              />
+              <Card card={items[5]} />
 
-              <Card
-                card={items[6]}
-                styleConfig={{
-                  autoHeight: true,
-                  mainClass: ["col-l-3", "col-m-3"],
-                }}
-              />
+              <Card card={items[6]} />
 
-              <Card
-                card={items[7]}
-                styleConfig={{
-                  autoHeight: true,
-                  mainClass: ["col-l-3", "col-m-3"],
-                }}
-              />
+              <Card card={items[7]} />
 
-              <Card
-                card={items[8]}
-                styleConfig={{
-                  autoHeight: true,
-                  mainClass: ["col-l-3", "col-m-3"],
-                }}
-              />
+              <Card card={items[8]} />
             </div>
 
             <div className="col-l-12">

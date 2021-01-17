@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
+import { v4 as UKG } from "uuid";
+
 import { getCategory } from "./service/CategoryService";
 import Loading from "../../components/loading/Loading";
 import NewsCards from "../card/NewsCards";
@@ -9,8 +11,9 @@ import NewsCards from "../card/NewsCards";
 import { notEmptyArray } from "../../utility/Validator";
 import styles from "./CustomCategory.module.css";
 import { MenuItems } from "../navigationArea/MenuItemsConstants";
+import connectWrapper from "../../redux/connect";
 
-export default class CustomCategory extends Component {
+class CustomCategory extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -29,7 +32,12 @@ export default class CustomCategory extends Component {
   }
 
   createUI = (categoryData) => {
-    const { pageTitle, numOfItemsToShow, params } = this.props;
+    const {
+      pageTitle,
+      numOfItemsToShow,
+      params,
+      toggleActiveMenu,
+    } = this.props;
     return (
       <>
         <div className={styles.header}>
@@ -46,6 +54,9 @@ export default class CustomCategory extends Component {
                 state: {
                   orderBy: params["order-by"],
                 },
+              }}
+              onClick={() => {
+                toggleActiveMenu(MenuItems.SPORTS.url, UKG());
               }}
             >
               See All
@@ -75,4 +86,7 @@ CustomCategory.propTypes = {
   params: PropTypes.shape({ "order-by": PropTypes.string }),
   pageTitle: PropTypes.string.isRequired,
   numOfItemsToShow: PropTypes.number.isRequired,
+  toggleActiveMenu: PropTypes.func.isRequired,
 };
+
+export default connectWrapper(CustomCategory);

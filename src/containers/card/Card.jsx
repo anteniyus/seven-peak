@@ -27,11 +27,18 @@ export default class Card extends Component {
     });
   };
 
-  getBorderBottomColor = (sectionId, styleConfig) => {
+  configureCardMainDiv = (sectionId, styleConfig) => {
     const menuItem = getBySectionId(sectionId);
     return styled.div`
       border-bottom: 3px solid
         ${() => (menuItem ? menuItem.color : MenuItems.HOME.color)};
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+        0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      &:hover {
+        box-shadow: 0 0 11px rgba(12, 53, 115, 2);
+      }
+      transition: box-shadow 0.3s;
+      cursor: pointer;
 
       @media (min-width: 1200px) {
         height: ${() => (styleConfig.height ? styleConfig.height : "300px")};
@@ -47,10 +54,7 @@ export default class Card extends Component {
     const { card, tabIndex, styleConfig } = this.props;
     const { enableRedirect, articleId } = this.state;
 
-    const ColorBorderDiv = this.getBorderBottomColor(
-      card.sectionId,
-      styleConfig
-    );
+    const CardMainDiv = this.configureCardMainDiv(card.sectionId, styleConfig);
 
     return (
       <>
@@ -64,7 +68,7 @@ export default class Card extends Component {
           }
           key={UKG()}
         >
-          <ColorBorderDiv
+          <CardMainDiv
             role="button"
             tabIndex={tabIndex}
             className={styles.container}
@@ -90,7 +94,7 @@ export default class Card extends Component {
             >
               <p>{card.webTitle}</p>
             </div>
-          </ColorBorderDiv>
+          </CardMainDiv>
         </div>
 
         {enableRedirect && (

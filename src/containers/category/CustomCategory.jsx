@@ -8,6 +8,7 @@ import NewsCards from "../card/NewsCards";
 
 import { notEmptyArray } from "../../utility/Validator";
 import styles from "./CustomCategory.module.css";
+import { MenuItems } from "../navigationArea/MenuItemsConstants";
 
 export default class CustomCategory extends Component {
   constructor(props) {
@@ -39,7 +40,7 @@ export default class CustomCategory extends Component {
           </div>
 
           <div className={["col-l-6", "col-mob-6", styles.right].join(" ")}>
-            <Link to="/sports">See All</Link>
+            <Link to={MenuItems.SPORTS.url}>See All</Link>
           </div>
         </div>
 

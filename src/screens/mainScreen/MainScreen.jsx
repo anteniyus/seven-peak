@@ -2,8 +2,7 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 
 import NavigationArea from "../../containers/navigationArea/NavigationArea";
-// import HomeScreen from "../homeScreen/HomeScreen";
-import Home from "../homeScreen/Home";
+import HomeScreen from "../homeScreen/HomeScreen";
 import SportsScreen from "../sportsScreen/SportsScreen";
 import CultureScreen from "../cultureScreen/CultureScreen";
 import LifestyleScreen from "../lifestyleScreen/LifestyleScreen";
@@ -18,7 +17,7 @@ function MainScreen() {
 
       <div className="row">
         <Switch>
-          <Route path="/" component={Home} exact />
+          <Route path="/" component={HomeScreen} exact />
           <Route path="/sport" component={SportsScreen} />
           <Route path="/culture" component={CultureScreen} />
           <Route path="/lifestyle" component={LifestyleScreen} />

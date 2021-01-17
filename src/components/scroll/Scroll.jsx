@@ -12,6 +12,8 @@ import Loading from "../loading/Loading";
 import { OrderBy } from "../../enums/OrderBy";
 
 export default class Scroll extends Component {
+  isComponentMounted = false;
+
   constructor(props) {
     super(props);
     this.state = {
@@ -22,7 +24,12 @@ export default class Scroll extends Component {
   }
 
   componentDidMount() {
+    this.isComponentMounted = true;
     this.fetchMoreData();
+  }
+
+  componentWillUnmount() {
+    this.isComponentMounted = false;
   }
 
   fetchMoreData = () => {
@@ -31,10 +38,11 @@ export default class Scroll extends Component {
     const { url, params } = this.props;
     getCategory(url, { ...params, page, "order-by": orderBy }).then(
       (response) => {
-        this.setState({
-          items: [...items, ...response.data.response.results],
-          page: page + 1,
-        });
+        if (this.isComponentMounted)
+          this.setState({
+            items: [...items, ...response.data.response.results],
+            page: page + 1,
+          });
       }
     );
   };

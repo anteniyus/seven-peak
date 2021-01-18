@@ -42,7 +42,6 @@ export default class Scroll extends Component {
       },
       () => this.fetchMoreData()
     );
-    // this.fetchMoreData();
   }
 
   componentWillUnmount() {

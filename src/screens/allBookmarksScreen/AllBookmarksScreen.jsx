@@ -9,6 +9,8 @@ import Card from "../../containers/card/Card";
 import Loading from "../../components/loading/Loading";
 
 export default class AllBookmarksScreen extends Component {
+  isComponentMounted = false;
+
   constructor(props) {
     super(props);
     this.state = {
@@ -18,6 +20,8 @@ export default class AllBookmarksScreen extends Component {
   }
 
   componentDidMount() {
+    this.isComponentMounted = true;
+
     const { bookmarkIdsList } = this.context;
     const bookmarksSet = new Set();
 
@@ -26,12 +30,17 @@ export default class AllBookmarksScreen extends Component {
     bookmarkIdsList.forEach((id) => {
       getArticle("/".concat(id)).then((response) => {
         bookmarksSet.add(response.data.response.content);
-        this.setState({
-          bookmarksList: [...bookmarksSet],
-          loading: false,
-        });
+        if (this.isComponentMounted)
+          this.setState({
+            bookmarksList: [...bookmarksSet],
+            loading: false,
+          });
       });
     });
+  }
+
+  componentWillUnmount() {
+    this.isComponentMounted = false;
   }
 
   createUI = () => {

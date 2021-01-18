@@ -55,10 +55,11 @@ class HomeScreen extends Component {
     const { orderBy } = this.state;
 
     getCategory("/search", { "order-by": orderBy }).then((response) => {
-      this.setState({
-        items: [...response.data.response.results],
-        loading: false,
-      });
+      if (this.isComponentMounted)
+        this.setState({
+          items: [...response.data.response.results],
+          loading: false,
+        });
     });
   };
 

@@ -65,6 +65,7 @@ export default class ArticleScreen extends Component {
           title="REMOVE BOOKMARK"
           onClick={this.deleteBookmark}
           iconComponent={<BsBookmarkDash />}
+          bgColor="red"
         />
       );
     else

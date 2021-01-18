@@ -75,6 +75,7 @@ export default class AllBookmarksScreen extends Component {
         <Header
           pageTitle="All Bookmark"
           refreshByOrdering={this.refreshByOrdering}
+          showAllBookButton={false}
         />
         {loading ? <Loading /> : this.createUI()}
       </>

@@ -12,7 +12,12 @@ import { GetAllOrderBy, OrderBy } from "../../enums/OrderBy";
 import { isFunction } from "../../utility/Validator";
 
 function Header(props) {
-  const { pageTitle, refreshByOrdering, defaultOrderBy } = props;
+  const {
+    pageTitle,
+    refreshByOrdering,
+    defaultOrderBy,
+    showAllBookButton,
+  } = props;
 
   const options = GetAllOrderBy();
 
@@ -40,14 +45,16 @@ function Header(props) {
           />
         </div>
 
-        <div className={["col-l-4", "col-mob-12", styles.right].join(" ")}>
-          <Link to="/allBookmarks">
-            <CustomButton
-              title="VIEW BOOKMARK"
-              iconComponent={<BsFillBookmarkFill />}
-            />
-          </Link>
-        </div>
+        {showAllBookButton && (
+          <div className={["col-l-4", "col-mob-12", styles.right].join(" ")}>
+            <Link to="/allBookmarks">
+              <CustomButton
+                title="VIEW BOOKMARK"
+                iconComponent={<BsFillBookmarkFill />}
+              />
+            </Link>
+          </div>
+        )}
       </div>
     </>
   );
@@ -56,12 +63,14 @@ function Header(props) {
 Header.defaultProps = {
   refreshByOrdering: () => {},
   defaultOrderBy: OrderBy.NEWEST.value,
+  showAllBookButton: true,
 };
 
 Header.propTypes = {
   pageTitle: PropTypes.string.isRequired,
   refreshByOrdering: PropTypes.func,
   defaultOrderBy: PropTypes.string,
+  showAllBookButton: PropTypes.bool,
 };
 
 export default Header;

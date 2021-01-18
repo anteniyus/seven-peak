@@ -7,12 +7,17 @@ import AppContext from "../../AppContext";
 import { getArticle } from "../../containers/category/service/CategoryService";
 import Card from "../../containers/card/Card";
 import Loading from "../../components/loading/Loading";
+import Header from "../../containers/header/Header";
+import { OrderBy } from "../../enums/OrderBy";
 
 export default class AllBookmarksScreen extends Component {
   isComponentMounted = false;
 
   constructor(props) {
     super(props);
+
+    this.headerRef = React.createRef();
+
     this.state = {
       bookmarksList: [],
       loading: true,
@@ -50,9 +55,30 @@ export default class AllBookmarksScreen extends Component {
     ));
   };
 
+  refreshByOrdering = (someOrderBy) => {
+    const { bookmarksList } = this.state;
+
+    bookmarksList.sort((a, b) => {
+      if (OrderBy.NEWEST.value === someOrderBy)
+        return new Date(b.webPublicationDate) - new Date(a.webPublicationDate);
+
+      return new Date(a.webPublicationDate) - new Date(b.webPublicationDate);
+    });
+
+    this.setState({ bookmarksList });
+  };
+
   render() {
     const { loading } = this.state;
-    return <>{loading ? <Loading /> : this.createUI()}</>;
+    return (
+      <>
+        <Header
+          pageTitle="All Bookmark"
+          refreshByOrdering={this.refreshByOrdering}
+        />
+        {loading ? <Loading /> : this.createUI()}
+      </>
+    );
   }
 }
 

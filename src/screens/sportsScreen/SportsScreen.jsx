@@ -20,7 +20,7 @@ const SportsScreen = (props) => {
   return (
     <Scroll
       url={MenuItems.SPORTS.url}
-      pageTitle={MenuItems.SPORTS.name}
+      pageTitle={MenuItems.SPORTS.title}
       contextSectionId={MenuItems.SPORTS.sectionId}
     />
   );

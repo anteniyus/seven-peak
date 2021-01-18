@@ -37,7 +37,7 @@ export default class SearchScreen extends Component {
           <Scroll
             url="/search"
             params={{ q }}
-            pageTitle="Search"
+            pageTitle="Search result"
             contextSectionId="search"
           />
         )}

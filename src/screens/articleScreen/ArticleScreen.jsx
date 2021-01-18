@@ -122,7 +122,7 @@ export default class ArticleScreen extends Component {
                 {content.webPublicationDate}
               </Moment>
 
-              <h1>{content.webTitle}</h1>
+              <h1 className={styles.h1}>{content.webTitle}</h1>
 
               <h3>{content.fields.headline}</h3>
 

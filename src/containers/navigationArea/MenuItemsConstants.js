@@ -7,18 +7,21 @@ const MenuItems = {
     color: "#f50057",
     url: "/sport",
     sectionId: "sport",
+    title: "Sports",
   },
   CULTURE: {
     name: "CULTURE",
     color: "#ffca28",
     url: "/culture",
     sectionId: "culture",
+    title: "Culture",
   },
   LIFESTYLE: {
     name: "LIFESTYLE",
     color: "#2196f3",
     url: "/lifeandstyle",
     sectionId: "lifeandstyle",
+    title: "Lifestyle",
   },
 };
 

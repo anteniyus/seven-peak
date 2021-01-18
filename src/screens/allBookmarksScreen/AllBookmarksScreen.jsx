@@ -6,12 +6,14 @@ import AppContext from "../../AppContext";
 
 import { getArticle } from "../../containers/category/service/CategoryService";
 import Card from "../../containers/card/Card";
+import Loading from "../../components/loading/Loading";
 
 export default class AllBookmarksScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
       bookmarksList: [],
+      loading: true,
     };
   }
 
@@ -24,16 +26,22 @@ export default class AllBookmarksScreen extends Component {
         bookmarksSet.add(response.data.response.content);
         this.setState({
           bookmarksList: [...bookmarksSet],
+          loading: false,
         });
       });
     });
   }
 
-  render() {
+  createUI = () => {
     const { bookmarksList } = this.state;
     return bookmarksList.map((bookmark) => (
       <Card card={bookmark} key={uuidv4()} />
     ));
+  };
+
+  render() {
+    const { loading } = this.state;
+    return <>{loading ? <Loading /> : this.createUI()}</>;
   }
 }
 

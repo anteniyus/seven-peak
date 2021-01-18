@@ -4,7 +4,7 @@ import Scroll from "../../components/scroll/Scroll";
 
 const LifestyleScreen = () => (
   <Scroll
-    url="/lifeandstyle"
+    url={MenuItems.LIFESTYLE.url}
     pageTitle={MenuItems.LIFESTYLE.name}
     contextSectionId={MenuItems.LIFESTYLE.sectionId}
   />

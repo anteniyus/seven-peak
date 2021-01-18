@@ -17,7 +17,7 @@ const MenuItems = {
   LIFESTYLE: {
     name: "LIFESTYLE",
     color: "#2196f3",
-    url: "/lifeStyle",
+    url: "/lifeandstyle",
     sectionId: "lifeandstyle",
   },
 };

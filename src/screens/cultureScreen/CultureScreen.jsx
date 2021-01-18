@@ -4,7 +4,7 @@ import Scroll from "../../components/scroll/Scroll";
 
 const CultureScreen = () => (
   <Scroll
-    url="/culture"
+    url={MenuItems.CULTURE.url}
     pageTitle={MenuItems.CULTURE.name}
     contextSectionId={MenuItems.CULTURE.sectionId}
   />

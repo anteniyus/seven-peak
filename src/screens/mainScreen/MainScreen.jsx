@@ -20,7 +20,7 @@ function MainScreen() {
           <Route path="/" component={HomeScreen} exact />
           <Route path="/sport" component={SportsScreen} />
           <Route path="/culture" component={CultureScreen} />
-          <Route path="/lifestyle" component={LifestyleScreen} />
+          <Route path="/lifeandstyle" component={LifestyleScreen} />
           <Route path="/viewArticle" component={ArticleScreen} />
           <Route path="/search" component={SearchScreen} />
           <Route path="/allBookmarks" component={AllBookmarksScreen} />

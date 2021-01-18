@@ -1,19 +1,27 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 
 import { MenuItems } from "../../containers/navigationArea/MenuItemsConstants";
 import Scroll from "../../components/scroll/Scroll";
+import AppContext from "../../AppContext";
 
 const SportsScreen = (props) => {
   const { location } = props;
-  const orderBy =
-    location.state && location.state.orderBy ? location.state.orderBy : "";
+
+  const appContext = useContext(AppContext);
+
+  if (location.state && location.state.orderBy) {
+    appContext.orderBy[MenuItems.SPORTS.sectionId] = {
+      applyFilter: true,
+      value: location.state.orderBy,
+    };
+  }
 
   return (
     <Scroll
-      url="/sport"
+      url={MenuItems.SPORTS.url}
       pageTitle={MenuItems.SPORTS.name}
-      params={{ orderBy }}
+      contextSectionId={MenuItems.SPORTS.sectionId}
     />
   );
 };

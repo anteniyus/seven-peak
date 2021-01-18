@@ -38,6 +38,7 @@ class CustomCategory extends Component {
       params,
       toggleActiveMenu,
     } = this.props;
+
     return (
       <>
         <div className={styles.header}>

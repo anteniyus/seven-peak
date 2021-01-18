@@ -33,7 +33,14 @@ export default class SearchScreen extends Component {
     const { q } = this.state;
     return (
       <div>
-        {q && <Scroll url="/search" params={{ q }} pageTitle="Search" />}
+        {q && (
+          <Scroll
+            url="/search"
+            params={{ q }}
+            pageTitle="Search"
+            contextSectionId="search"
+          />
+        )}
       </div>
     );
   }

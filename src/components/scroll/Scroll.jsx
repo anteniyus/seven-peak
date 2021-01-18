@@ -10,26 +10,50 @@ import Header from "../../containers/header/Header";
 import Loading from "../loading/Loading";
 
 import { OrderBy } from "../../enums/OrderBy";
+import AppContext from "../../AppContext";
 
 export default class Scroll extends Component {
   isComponentMounted = false;
 
   constructor(props) {
     super(props);
+
     this.state = {
       items: [],
       page: 1,
-      orderBy: props.params.orderBy || OrderBy.NEWEST.value,
+      orderBy: "",
     };
   }
 
   componentDidMount() {
     this.isComponentMounted = true;
-    this.fetchMoreData();
+
+    const { contextSectionId } = this.props;
+    const { orderBy } = this.context;
+
+    this.setState(
+      {
+        orderBy:
+          orderBy[contextSectionId] &&
+          orderBy[contextSectionId].applyFilter &&
+          orderBy[contextSectionId].value
+            ? orderBy[contextSectionId].value
+            : OrderBy.NEWEST.value,
+      },
+      () => this.fetchMoreData()
+    );
+    // this.fetchMoreData();
   }
 
   componentWillUnmount() {
+    const { contextSectionId } = this.props;
+    const { orderBy } = this.context;
+
     this.isComponentMounted = false;
+
+    if (orderBy[contextSectionId])
+      orderBy[contextSectionId].applyFilter = false;
+    this.context.sectionId = contextSectionId;
   }
 
   fetchMoreData = () => {
@@ -47,23 +71,30 @@ export default class Scroll extends Component {
     );
   };
 
-  refreshByOrdering = (orderBy) => {
-    this.setState({ page: 1, items: [], orderBy }, () => {
+  refreshByOrdering = (someOrderBy) => {
+    const { contextSectionId } = this.props;
+    const { orderBy } = this.context;
+
+    orderBy[contextSectionId] = { value: someOrderBy };
+
+    this.setState({ page: 1, items: [], orderBy: someOrderBy }, () => {
       this.fetchMoreData();
     });
   };
 
   render() {
-    const { items } = this.state;
-    const { pageTitle, params } = this.props;
+    const { items, orderBy } = this.state;
+    const { pageTitle } = this.props;
 
     return (
       <div id="123">
-        <Header
-          pageTitle={pageTitle}
-          refreshByOrdering={this.refreshByOrdering}
-          defaultOrderBy={params.orderBy}
-        />
+        {orderBy && (
+          <Header
+            pageTitle={pageTitle}
+            refreshByOrdering={this.refreshByOrdering}
+            defaultOrderBy={orderBy}
+          />
+        )}
         <InfiniteScroll
           dataLength={items.length}
           next={this.fetchMoreData}
@@ -91,4 +122,7 @@ Scroll.propTypes = {
   url: PropTypes.string.isRequired,
   params: PropTypes.shape({ orderBy: PropTypes.string }),
   pageTitle: PropTypes.string.isRequired,
+  contextSectionId: PropTypes.string.isRequired,
 };
+
+Scroll.contextType = AppContext;

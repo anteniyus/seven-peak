@@ -104,6 +104,7 @@ export default class Card extends Component {
               pathname: "/viewArticle",
               state: {
                 articleId,
+                prevPath: window.location.pathname,
               },
             }}
             push

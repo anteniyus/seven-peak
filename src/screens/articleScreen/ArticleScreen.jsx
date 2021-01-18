@@ -21,6 +21,9 @@ export default class ArticleScreen extends Component {
   }
 
   componentDidMount() {
+    window.history.pushState(null, null, window.location.pathname);
+    window.addEventListener("popstate", this.onBackButtonEvent);
+
     const { location } = this.props;
     getArticle("/".concat(location.state.articleId)).then((response) => {
       this.setState({
@@ -31,6 +34,23 @@ export default class ArticleScreen extends Component {
 
     this.createBookmarkState(location.state.articleId);
   }
+
+  componentWillUnmount() {
+    window.removeEventListener("popstate", this.onBackButtonEvent);
+  }
+
+  onBackButtonEvent = (e) => {
+    e.preventDefault();
+
+    // eslint-disable-next-line react/prop-types
+    const { history, location } = this.props;
+    const { orderBy, sectionId } = this.context;
+
+    if (orderBy && orderBy[sectionId]) orderBy[sectionId].applyFilter = true;
+
+    // eslint-disable-next-line react/prop-types
+    history.push(location.state.prevPath);
+  };
 
   createBookmarkState = (articleId) => {
     const { bookmarkIdsList } = this.context;

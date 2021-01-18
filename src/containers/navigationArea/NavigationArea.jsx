@@ -1,5 +1,8 @@
 import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
+import PropTypes from "prop-types";
+
+import { Link, Redirect } from "react-router-dom";
+import { v4 as UKG } from "uuid";
 
 import { FcMenu } from "react-icons/fc";
 import { FaSearch } from "react-icons/fa";
@@ -9,10 +12,12 @@ import styles from "./NavigationArea.module.css";
 import { getMenuItems } from "./MenuItemsConstants";
 import MenuItem from "../../components/menuItem/MenuItem";
 
+import connectWrapper from "../../redux/connect";
+
 const barClass = [styles.navigation, styles.bar].join(" ");
 const navigationClass = styles.navigation;
 
-export default class NavigationArea extends Component {
+class NavigationArea extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -36,9 +41,18 @@ export default class NavigationArea extends Component {
 
   render() {
     const { bar, searchValue, enableRedirect } = this.state;
+    const { toggleActiveMenu } = this.props;
+
     return (
       <div className={styles.navigationArea}>
-        <h1>The Peaks</h1>
+        <Link
+          to="/"
+          onClick={() => {
+            toggleActiveMenu("/", UKG());
+          }}
+        >
+          <h1 className={styles.h1}>The Peaks</h1>
+        </Link>
         <div className={bar ? barClass : navigationClass}>
           <div className={styles.menu}>
             <MenuItem menuItems={getMenuItems()} />
@@ -86,3 +100,9 @@ export default class NavigationArea extends Component {
     );
   }
 }
+
+NavigationArea.propTypes = {
+  toggleActiveMenu: PropTypes.func.isRequired,
+};
+
+export default connectWrapper(NavigationArea);

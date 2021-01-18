@@ -28,7 +28,7 @@ function Header(props) {
       <div className={styles.header}>
         <div className={["col-l-4", "col-mob-12"].join(" ")}>
           <div className={styles.title}>
-            <h1>{pageTitle}</h1>
+            <h1 className={styles.h1}>{pageTitle}</h1>
           </div>
         </div>
 

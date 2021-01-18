@@ -21,6 +21,8 @@ export default class AllBookmarksScreen extends Component {
     const { bookmarkIdsList } = this.context;
     const bookmarksSet = new Set();
 
+    if (bookmarkIdsList.size === 0) this.setState({ loading: false });
+
     bookmarkIdsList.forEach((id) => {
       getArticle("/".concat(id)).then((response) => {
         bookmarksSet.add(response.data.response.content);

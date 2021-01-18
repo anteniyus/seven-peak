@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-// import styles from "./HomeScreen.module.css";
 import { getCategory } from "../../containers/category/service/CategoryService";
 import Card from "../../containers/card/Card";
 import { notEmptyArray } from "../../utility/Validator";
@@ -8,19 +7,48 @@ import { MenuItems } from "../../containers/navigationArea/MenuItemsConstants";
 import Loading from "../../components/loading/Loading";
 import Header from "../../containers/header/Header";
 import { OrderBy } from "../../enums/OrderBy";
+import AppContext from "../../AppContext";
 
 class HomeScreen extends Component {
+  isComponentMounted = false;
+
   constructor(props) {
     super(props);
     this.state = {
       items: [],
       loading: true,
-      orderBy: OrderBy.NEWEST.value,
+      orderBy: "",
     };
   }
 
   componentDidMount() {
-    this.fetchData();
+    this.isComponentMounted = true;
+
+    const contextSectionId = MenuItems.HOME.sectionId;
+    const { orderBy } = this.context;
+
+    this.setState(
+      {
+        orderBy:
+          orderBy[contextSectionId] &&
+          orderBy[contextSectionId].applyFilter &&
+          orderBy[contextSectionId].value
+            ? orderBy[contextSectionId].value
+            : OrderBy.NEWEST.value,
+      },
+      () => this.fetchData()
+    );
+  }
+
+  componentWillUnmount() {
+    const contextSectionId = MenuItems.HOME.sectionId;
+    const { orderBy } = this.context;
+
+    this.isComponentMounted = false;
+
+    if (orderBy[contextSectionId])
+      orderBy[contextSectionId].applyFilter = false;
+    this.context.sectionId = contextSectionId;
   }
 
   fetchData = () => {
@@ -34,8 +62,13 @@ class HomeScreen extends Component {
     });
   };
 
-  refreshByOrdering = (order) => {
-    this.setState({ loading: true, items: [], orderBy: order }, () => {
+  refreshByOrdering = (someOrderBy) => {
+    const contextSectionId = MenuItems.HOME.sectionId;
+    const { orderBy } = this.context;
+
+    orderBy[contextSectionId] = { value: someOrderBy };
+
+    this.setState({ loading: true, items: [], orderBy: someOrderBy }, () => {
       this.fetchData();
     });
   };
@@ -144,17 +177,22 @@ class HomeScreen extends Component {
   };
 
   render() {
-    const { loading } = this.state;
+    const { loading, orderBy } = this.state;
     return (
       <div>
-        <Header
-          pageTitle="Top Stories"
-          refreshByOrdering={this.refreshByOrdering}
-        />
+        {orderBy && (
+          <Header
+            pageTitle="Top Stories"
+            refreshByOrdering={this.refreshByOrdering}
+            defaultOrderBy={orderBy}
+          />
+        )}
         {loading ? <Loading /> : this.createUI()}
       </div>
     );
   }
 }
+
+HomeScreen.contextType = AppContext;
 
 export default HomeScreen;

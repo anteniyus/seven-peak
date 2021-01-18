@@ -28,7 +28,7 @@ export default class AllBookmarksScreen extends Component {
     this.isComponentMounted = true;
 
     const { bookmarkIdsList } = this.context;
-    const loadedBookmarks = [];
+    let loadedBookmarks = [];
 
     if (bookmarkIdsList.size === 0) this.setState({ loading: false });
     else {
@@ -39,7 +39,11 @@ export default class AllBookmarksScreen extends Component {
         })
       );
 
-      this.sortByDate(loadedBookmarks, OrderBy.NEWEST.value);
+      loadedBookmarks = this.sortByDate(
+        loadedBookmarks.slice(),
+        OrderBy.NEWEST.value
+      );
+
       if (this.isComponentMounted)
         this.setState({
           bookmarksList: [...loadedBookmarks],
@@ -60,14 +64,9 @@ export default class AllBookmarksScreen extends Component {
   };
 
   refreshByOrdering = (someOrderBy) => {
-    const { bookmarksList } = this.state;
+    let { bookmarksList } = this.state;
 
-    bookmarksList.sort((a, b) => {
-      if (OrderBy.NEWEST.value === someOrderBy)
-        return new Date(b.webPublicationDate) - new Date(a.webPublicationDate);
-
-      return new Date(a.webPublicationDate) - new Date(b.webPublicationDate);
-    });
+    bookmarksList = this.sortByDate(bookmarksList.slice(), someOrderBy);
 
     this.setState({ bookmarksList });
   };

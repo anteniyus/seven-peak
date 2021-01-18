@@ -24,24 +24,28 @@ export default class AllBookmarksScreen extends Component {
     };
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     this.isComponentMounted = true;
 
     const { bookmarkIdsList } = this.context;
-    const bookmarksSet = new Set();
+    const loadedBookmarks = [];
 
     if (bookmarkIdsList.size === 0) this.setState({ loading: false });
+    else {
+      await this.loadBookmarks().then((results) =>
+        results.forEach((result) => {
+          console.log(result.data.response.content);
+          loadedBookmarks.push(result.data.response.content);
+        })
+      );
 
-    bookmarkIdsList.forEach((id) => {
-      getArticle("/".concat(id)).then((response) => {
-        bookmarksSet.add(response.data.response.content);
-        if (this.isComponentMounted)
-          this.setState({
-            bookmarksList: [...bookmarksSet],
-            loading: false,
-          });
-      });
-    });
+      this.sortByDate(loadedBookmarks, OrderBy.NEWEST.value);
+      if (this.isComponentMounted)
+        this.setState({
+          bookmarksList: [...loadedBookmarks],
+          loading: false,
+        });
+    }
   }
 
   componentWillUnmount() {
@@ -66,6 +70,32 @@ export default class AllBookmarksScreen extends Component {
     });
 
     this.setState({ bookmarksList });
+  };
+
+  sortByDate = (list, orderBy) => {
+    list.sort((a, b) => {
+      if (OrderBy.NEWEST.value === orderBy)
+        return new Date(b.webPublicationDate) - new Date(a.webPublicationDate);
+
+      return new Date(a.webPublicationDate) - new Date(b.webPublicationDate);
+    });
+
+    return list;
+  };
+
+  loadBookmarks = async () => {
+    const { bookmarkIdsList } = this.context;
+
+    const bookmarkIdsArray = Array.from(bookmarkIdsList);
+
+    const results = await Promise.all(
+      bookmarkIdsArray.map(async (bookmarkId) => {
+        const result = await getArticle("/".concat(bookmarkId));
+        return result;
+      })
+    );
+
+    return results;
   };
 
   render() {

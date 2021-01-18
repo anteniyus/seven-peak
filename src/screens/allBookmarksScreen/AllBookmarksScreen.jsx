@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { v4 as uuidv4 } from "uuid";
+import { v4 as UKG } from "uuid";
 
 import AppContext from "../../AppContext";
 
@@ -55,7 +55,7 @@ export default class AllBookmarksScreen extends Component {
   createUI = () => {
     const { bookmarksList } = this.state;
     return bookmarksList.map((bookmark) => (
-      <Card card={bookmark} key={uuidv4()} />
+      <Card card={bookmark} key={UKG()} />
     ));
   };
 

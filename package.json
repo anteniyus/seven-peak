@@ -1,7 +1,8 @@
 {
-  "name": "seven-peaks",
+  "name": "the-guardian",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://anteniyus.github.io/the-guardian",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.8",
     "@testing-library/react": "^11.2.2",
@@ -28,7 +29,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -61,6 +64,7 @@
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-react": "^7.21.5",
     "eslint-plugin-react-hooks": "^4.0.0",
+    "gh-pages": "^3.1.0",
     "html-webpack-plugin": "^4.5.1",
     "prettier": "^2.2.1"
   }

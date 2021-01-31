@@ -51,7 +51,7 @@ class NavigationArea extends Component {
             toggleActiveMenu("/", UKG());
           }}
         >
-          <h1 className={styles.h1}>The Peaks</h1>
+          <h1 className={styles.h1}>The Guardian News</h1>
         </Link>
         <div className={bar ? barClass : navigationClass}>
           <div className={styles.menu}>

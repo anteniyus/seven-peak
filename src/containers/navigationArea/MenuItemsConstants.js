@@ -1,7 +1,12 @@
 import { notEmptyArray } from "../../utility/Validator";
 
 const MenuItems = {
-  HOME: { name: "NEWS TODAY", color: "#388e3c", url: "/the-guardian", sectionId: "top" },
+  HOME: {
+    name: "NEWS TODAY",
+    color: "#388e3c",
+    url: "/the-guardian",
+    sectionId: "top",
+  },
   SPORTS: {
     name: "SPORTS",
     color: "#f50057",

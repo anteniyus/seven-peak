@@ -81,7 +81,7 @@ export default class Card extends Component {
                 src={
                   card.fields && card.fields.thumbnail
                     ? card.fields.thumbnail
-                    : process.env.PUBLIC_URL.concat("/thePeaks.jpg")
+                    : process.env.PUBLIC_URL.concat("/default-blue.jpg")
                 }
                 alt={card.webTitle}
               />

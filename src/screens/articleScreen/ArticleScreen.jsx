@@ -140,7 +140,7 @@ export default class ArticleScreen extends Component {
                 src={
                   content.fields.thumbnail
                     ? content.fields.thumbnail
-                    : process.env.PUBLIC_URL.concat("/thePeaks.jpg")
+                    : process.env.PUBLIC_URL.concat("/default-blue.jpg")
                 }
                 alt={content.fields.headline}
               />

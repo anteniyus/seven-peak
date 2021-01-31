@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/the-guardian/static/css/main.264c8f19.chunk.css",
-    "main.js": "/the-guardian/static/js/main.6f038df3.chunk.js",
-    "main.js.map": "/the-guardian/static/js/main.6f038df3.chunk.js.map",
+    "main.js": "/the-guardian/static/js/main.ce2f6180.chunk.js",
+    "main.js.map": "/the-guardian/static/js/main.ce2f6180.chunk.js.map",
     "runtime-main.js": "/the-guardian/static/js/runtime-main.6b9073bc.js",
     "runtime-main.js.map": "/the-guardian/static/js/runtime-main.6b9073bc.js.map",
     "static/js/2.daf40c08.chunk.js": "/the-guardian/static/js/2.daf40c08.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.6b9073bc.js",
     "static/js/2.daf40c08.chunk.js",
     "static/css/main.264c8f19.chunk.css",
-    "static/js/main.6f038df3.chunk.js"
+    "static/js/main.ce2f6180.chunk.js"
   ]
 }

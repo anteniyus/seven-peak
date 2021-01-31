@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/the-guardian/static/css/main.264c8f19.chunk.css",
+    "main.css": "/the-guardian/static/css/main.f3cb144e.chunk.css",
     "main.js": "/the-guardian/static/js/main.2825ab42.chunk.js",
     "main.js.map": "/the-guardian/static/js/main.2825ab42.chunk.js.map",
     "runtime-main.js": "/the-guardian/static/js/runtime-main.6b9073bc.js",
@@ -10,13 +10,13 @@
     "static/js/3.715b9c0a.chunk.js": "/the-guardian/static/js/3.715b9c0a.chunk.js",
     "static/js/3.715b9c0a.chunk.js.map": "/the-guardian/static/js/3.715b9c0a.chunk.js.map",
     "index.html": "/the-guardian/index.html",
-    "static/css/main.264c8f19.chunk.css.map": "/the-guardian/static/css/main.264c8f19.chunk.css.map",
+    "static/css/main.f3cb144e.chunk.css.map": "/the-guardian/static/css/main.f3cb144e.chunk.css.map",
     "static/js/2.daf40c08.chunk.js.LICENSE.txt": "/the-guardian/static/js/2.daf40c08.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.6b9073bc.js",
     "static/js/2.daf40c08.chunk.js",
-    "static/css/main.264c8f19.chunk.css",
+    "static/css/main.f3cb144e.chunk.css",
     "static/js/main.2825ab42.chunk.js"
   ]
 }

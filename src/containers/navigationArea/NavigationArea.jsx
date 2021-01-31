@@ -48,7 +48,7 @@ class NavigationArea extends Component {
         <Link
           to="/"
           onClick={() => {
-            toggleActiveMenu("/", UKG());
+            toggleActiveMenu("/the-guardian", UKG());
           }}
         >
           <h1 className={styles.h1}>The Guardian News</h1>
